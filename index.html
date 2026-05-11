@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OchiJump: Neon City — TwinPixelsLab</title>
+  <meta name="description" content="The ultimate 120 FPS Synthwave platformer. Built exclusively for Solana Seeker." />
+  <meta property="og:title" content="OchiJump: Neon City" />
+  <meta property="og:description" content="The ultimate 120 FPS Synthwave platformer. Built exclusively for Solana Seeker." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --c: #00e5ff;
+      --m: #f700ff;
+      --p: #7b2fff;
+      --bg: #050610;
+      --bg2: #090c1e;
+      --bg3: #0d1230;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: #e2e8f0;
+      font-family: 'Outfit', sans-serif;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image:
+        linear-gradient(rgba(0,229,255,.022) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,229,255,.022) 1px, transparent 1px);
+      background-size: 52px 52px;
+      pointer-events: none; z-index: 0;
+    }
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,.03) 3px, rgba(0,0,0,.03) 4px);
+      pointer-events: none; z-index: 0;
+    }
+
+    /* ── Typography helpers ──────────────────────── */
+    .fh { font-family: 'Rajdhani', sans-serif; }
+    .fm { font-family: 'Space Mono', monospace; }
+    .nc { color: var(--c); text-shadow: 0 0 14px rgba(0,229,255,.6); }
+    .nm { color: var(--m); text-shadow: 0 0 14px rgba(247,0,255,.6); }
+
+    /* ── NAV ─────────────────────────────────────── */
+    #topnav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      background: rgba(5,6,16,.9);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(0,229,255,.1);
+    }
+    .nav-in {
+      max-width: 960px; margin: 0 auto;
+      padding: 10px 20px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+    .nav-brand img { height: 34px; width: 34px; object-fit: contain; }
+    .nav-brand-txt {
+      font-family: 'Rajdhani', sans-serif; font-weight: 700;
+      font-size: .95rem; letter-spacing: .14em; color: #fff;
+    }
+    .nav-badge {
+      display: flex; align-items: center; gap: 6px;
+      font-family: 'Space Mono', monospace; font-size: .6rem;
+      color: rgba(226,232,240,.4);
+      border: 1px solid rgba(255,255,255,.07); padding: 4px 10px;
+      letter-spacing: .06em;
+    }
+    .pulse-dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--c); box-shadow: 0 0 7px var(--c);
+      animation: blink 2.2s ease-in-out infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.2} }
+
+    /* ── HERO ────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      padding: 88px 24px 64px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .glow {
+      position: absolute; border-radius: 50%;
+      filter: blur(110px); pointer-events: none;
+    }
+    .g1 { width: 500px; height: 400px; top: -100px; left: -100px; background: rgba(0,229,255,.06); }
+    .g2 { width: 480px; height: 480px; top: -40px; right: -130px; background: rgba(247,0,255,.05); }
+    .g3 { width: 600px; height: 380px; bottom: -60px; left: 5%; background: rgba(123,47,255,.07); }
+
+    .hero-studio-tag {
+      display: flex; align-items: center; gap: 8px;
+      margin-bottom: 28px; position: relative; z-index: 2;
+    }
+    .hero-studio-tag img { height: 40px; width: 40px; object-fit: contain; }
+    .hero-studio-tag span {
+      font-family: 'Space Mono', monospace; font-size: .65rem;
+      letter-spacing: .18em; color: rgba(226,232,240,.42); text-transform: uppercase;
+    }
+
+    .hero-game-logo {
+      width: min(340px, 86vw); margin: 0 auto 26px;
+      position: relative; z-index: 2;
+      filter: drop-shadow(0 0 44px rgba(140,0,255,.55)) drop-shadow(0 0 100px rgba(140,0,255,.18));
+      animation: floatY 5s ease-in-out infinite;
+    }
+    @keyframes floatY { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+
+    .hero-sub {
+      font-family: 'Space Mono', monospace; font-size: .78rem;
+      line-height: 1.9; letter-spacing: .04em;
+      color: rgba(226,232,240,.58); max-width: 360px;
+      margin: 0 auto 36px; position: relative; z-index: 2;
+    }
+
+    .cta-wrap {
+      position: relative; z-index: 2;
+      display: flex; flex-direction: column; align-items: center; gap: 11px;
+    }
+    .cta-btn {
+      display: inline-block; padding: 15px 38px;
+      font-family: 'Space Mono', monospace; font-size: .76rem;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--bg); background: var(--c);
+      border: none; cursor: not-allowed;
+      clip-path: polygon(12px 0%, 100% 0%, calc(100% - 12px) 100%, 0% 100%);
+      box-shadow: 0 0 30px rgba(0,229,255,.55), 0 0 80px rgba(0,229,255,.18);
+      transition: box-shadow .3s;
+      font-weight: 700;
+    }
+    .cta-btn:hover { box-shadow: 0 0 44px rgba(0,229,255,.75), 0 0 110px rgba(0,229,255,.28); }
+    .cta-hint {
+      font-family: 'Space Mono', monospace; font-size: .6rem;
+      letter-spacing: .11em; color: rgba(226,232,240,.2);
+    }
+
+    .hero-cast {
+      position: relative; z-index: 2;
+      display: flex; align-items: flex-end; justify-content: center;
+      margin-top: 44px; width: 100%; max-width: 460px;
+    }
+    .hero-cast-item { flex: 1; min-width: 0; }
+    .hero-cast-item img {
+      width: 100%; object-fit: contain;
+      filter: drop-shadow(0 4px 20px rgba(123,47,255,.35));
+    }
+    .hero-cast-item:nth-child(1) { animation: floatY 5.5s 0s    ease-in-out infinite; }
+    .hero-cast-item:nth-child(2) { animation: floatY 5.0s 0.9s  ease-in-out infinite; }
+    .hero-cast-item:nth-child(3) { animation: floatY 5.8s 1.8s  ease-in-out infinite; }
+    .hero-cast-item:nth-child(4) { animation: floatY 5.2s 2.7s  ease-in-out infinite; }
+
+    .scroll-arrow {
+      position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 5px;
+      z-index: 2; opacity: .3; animation: fadeArrow 3s ease-in-out infinite;
+    }
+    .scroll-arrow span {
+      font-family: 'Space Mono', monospace; font-size: .55rem;
+      letter-spacing: .22em; color: var(--c);
+    }
+    .scroll-arrow-line { width: 1px; height: 28px; background: linear-gradient(to bottom, var(--c), transparent); }
+    @keyframes fadeArrow { 0%,100%{opacity:.3} 50%{opacity:.65} }
+
+    /* ── SECTION COMMON ─────────────────────────── */
+    .sec { padding: 84px 24px; position: relative; z-index: 1; }
+    .sec-in { max-width: 960px; margin: 0 auto; }
+    .eyebrow {
+      font-family: 'Space Mono', monospace; font-size: .6rem;
+      letter-spacing: .22em; color: var(--c); text-transform: uppercase; margin-bottom: 8px;
+    }
+    .sec-title {
+      font-family: 'Rajdhani', sans-serif; font-weight: 700;
+      font-size: clamp(1.75rem, 5vw, 2.6rem);
+      line-height: 1.1; color: #fff; margin-bottom: 10px;
+    }
+    .sec-rule {
+      height: 2px; width: 54px; margin-bottom: 40px;
+      background: linear-gradient(90deg, var(--c), var(--m));
+      box-shadow: 0 0 10px rgba(0,229,255,.4);
+    }
+
+    /* ── FEATURES ───────────────────────────────── */
+    #features { background: rgba(9,12,30,.6); }
+    .feat-grid {
+      display: grid; grid-template-columns: 1fr; gap: 14px;
+    }
+    @media(min-width:640px){ .feat-grid { grid-template-columns: repeat(3,1fr); } }
+    .feat-card {
+      background: var(--bg2);
+      border: 1px solid rgba(0,229,255,.1);
+      border-top: 2px solid var(--c);
+      padding: 28px 22px; position: relative; overflow: hidden;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .feat-card:nth-child(2) { border-top-color: var(--m); }
+    .feat-card:nth-child(3) { border-top-color: var(--p); }
+    .feat-card:hover { transform: translateY(-5px); box-shadow: 0 16px 56px rgba(0,0,0,.4); }
+    .feat-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(0,229,255,.04) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .feat-num {
+      font-family: 'Space Mono', monospace; font-size: .58rem;
+      color: rgba(0,229,255,.35); letter-spacing: .16em; margin-bottom: 18px;
+    }
+    .feat-card:nth-child(2) .feat-num { color: rgba(247,0,255,.35); }
+    .feat-card:nth-child(3) .feat-num { color: rgba(123,47,255,.35); }
+    .feat-ttl {
+      font-family: 'Rajdhani', sans-serif; font-weight: 700;
+      font-size: 1.15rem; color: #fff; margin-bottom: 11px;
+    }
+    .feat-desc { font-size: .88rem; line-height: 1.72; color: rgba(226,232,240,.58); }
+    .feat-desc strong { color: rgba(226,232,240,.84); font-weight: 500; }
+
+    /* ── GAMEPLAY ───────────────────────────────── */
+    #gameplay { background: var(--bg2); overflow: hidden; }
+    .gameplay-wrap {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 52px;
+    }
+    @media(min-width:760px){
+      .gameplay-wrap { flex-direction: row; align-items: center; gap: 64px; }
+    }
+    .gameplay-text { flex: 1; min-width: 0; }
+    .gameplay-text .sec-title { margin-bottom: 14px; }
+    .gameplay-desc {
+      font-size: .93rem; line-height: 1.82;
+      color: rgba(226,232,240,.58); max-width: 400px;
+      text-wrap: pretty; margin-bottom: 28px;
+    }
+    .gameplay-desc strong { color: rgba(226,232,240,.84); font-weight: 500; }
+    .gameplay-tags {
+      display: flex; flex-wrap: wrap; gap: 8px;
+    }
+    .gameplay-tag {
+      font-family: 'Space Mono', monospace; font-size: .58rem;
+      letter-spacing: .13em; color: var(--c);
+      border: 1px solid rgba(0,229,255,.25); padding: 5px 12px;
+    }
+
+    /* ── Phone Device ── */
+    .phone-stage {
+      flex-shrink: 0; display: flex; justify-content: center;
+      position: relative;
+    }
+    .phone-outer {
+      width: 218px; position: relative;
+      filter:
+        drop-shadow(0 0 40px rgba(0,229,255,.22))
+        drop-shadow(0 0 90px rgba(123,47,255,.18))
+        drop-shadow(0 60px 80px rgba(0,0,0,.7));
+    }
+    @media(min-width:760px){ .phone-outer { width: 248px; } }
+
+    /* shell */
+    .phone-shell {
+      background: linear-gradient(160deg, #1a1d38 0%, #0c0e24 60%, #11142c 100%);
+      border-radius: 38px;
+      border: 1.5px solid rgba(0,229,255,.22);
+      padding: 6px;
+      position: relative; overflow: hidden;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.07),
+        inset 0 -1px 0 rgba(0,0,0,.4);
+    }
+    .phone-shell::before {
+      content: '';
+      position: absolute; inset: 0; border-radius: 38px;
+      background: linear-gradient(135deg, rgba(0,229,255,.06) 0%, transparent 45%);
+      pointer-events: none;
+    }
+    /* side buttons */
+    .phone-btn-r {
+      position: absolute; right: -3px; top: 100px;
+      width: 3px; height: 46px; border-radius: 0 3px 3px 0;
+      background: linear-gradient(180deg, #1e2240, #0d1030);
+      border: 1px solid rgba(0,229,255,.14); border-left: none;
+    }
+    .phone-btn-l1, .phone-btn-l2 {
+      position: absolute; left: -3px;
+      width: 3px; border-radius: 3px 0 0 3px;
+      background: linear-gradient(180deg, #1e2240, #0d1030);
+      border: 1px solid rgba(0,229,255,.14); border-right: none;
+    }
+    .phone-btn-l1 { top: 86px; height: 30px; }
+    .phone-btn-l2 { top: 126px; height: 46px; }
+
+    /* screen — full bleed, no status/home bar */
+    .phone-screen {
+      border-radius: 26px; overflow: hidden;
+      background: #000; position: relative;
+      aspect-ratio: 9/19.5; width: 100%;
+    }
+    .phone-screen video {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .phone-screen-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg,
+        rgba(0,229,255,.03) 0%,
+        transparent 25%,
+        transparent 75%,
+        rgba(123,47,255,.05) 100%);
+      pointer-events: none;
+    }
+    /* scanlines on screen */
+    .phone-screen::after {
+      content: '';
+      position: absolute; inset: 0; pointer-events: none;
+      background: repeating-linear-gradient(0deg,
+        transparent, transparent 2px,
+        rgba(0,0,0,.04) 2px, rgba(0,0,0,.04) 3px);
+    }
+    /* punch-hole camera — circle */
+    .phone-camera-hole {
+      position: absolute; top: 14px; left: 50%; transform: translateX(-50%);
+      width: 11px; height: 11px; border-radius: 50%;
+      background: #000;
+      box-shadow: 0 0 0 1.5px rgba(255,255,255,.07), inset 0 0 4px rgba(0,0,0,.9);
+      z-index: 10;
+    }
+    /* neon ring glow behind phone */
+    .phone-glow-ring {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      width: 340px; height: 340px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,229,255,.07) 0%, rgba(123,47,255,.05) 40%, transparent 70%);
+      pointer-events: none; z-index: -1;
+    }
+
+    /* ── CAST ───────────────────────────────────── */
+    #cast { padding-bottom: 84px; }
+    .cast-scroller {
+      overflow-x: auto; padding-bottom: 12px;
+      scrollbar-width: thin; scrollbar-color: var(--p) var(--bg2);
+      -webkit-overflow-scrolling: touch;
+    }
+    .cast-scroller::-webkit-scrollbar { height: 3px; }
+    .cast-scroller::-webkit-scrollbar-track { background: var(--bg2); }
+    .cast-scroller::-webkit-scrollbar-thumb { background: var(--p); }
+    .cast-row { display: flex; gap: 14px; min-width: max-content; padding: 4px 2px 4px; }
+
+    .cast-card {
+      width: 174px; flex-shrink: 0;
+      background: var(--bg2);
+      border: 1px solid rgba(123,47,255,.28);
+      overflow: hidden; transition: all .35s; cursor: default;
+    }
+    @media(min-width:640px){ .cast-card { width: 198px; } }
+    .cast-card:hover {
+      border-color: var(--m);
+      box-shadow: 0 0 28px rgba(247,0,255,.2), 0 24px 60px rgba(0,0,0,.5);
+      transform: translateY(-10px);
+    }
+    .cast-img-wrap {
+      height: 220px; overflow: hidden;
+      background: linear-gradient(180deg, rgba(14,18,52,.8) 0%, rgba(9,12,30,1) 100%);
+      display: flex; align-items: flex-end; justify-content: center;
+    }
+    .cast-img-wrap img {
+      height: 210px; width: auto; max-width: 100%;
+      object-fit: contain; padding: 8px 6px 0;
+      filter: drop-shadow(0 0 14px rgba(123,47,255,.35));
+      transition: transform .35s;
+    }
+    .cast-card:hover .cast-img-wrap img { transform: scale(1.07) translateY(-5px); }
+    .cast-meta { padding: 13px 14px 15px; }
+    .cast-name {
+      font-family: 'Rajdhani', sans-serif; font-weight: 700;
+      font-size: 1rem; color: var(--c); letter-spacing: .07em; text-transform: uppercase;
+    }
+    .cast-role {
+      font-family: 'Space Mono', monospace; font-size: .58rem;
+      color: rgba(226,232,240,.28); margin-top: 3px; letter-spacing: .05em;
+    }
+    .cast-more {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      min-height: 280px; border-color: rgba(0,229,255,.14) !important;
+      background: transparent !important;
+    }
+    .cast-more-inner {
+      font-family: 'Space Mono', monospace; font-size: .6rem;
+      color: rgba(0,229,255,.35); letter-spacing: .16em; text-align: center;
+      display: flex; flex-direction: column; align-items: center; gap: 12px;
+    }
+    .cast-more-plus {
+      width: 36px; height: 36px; border: 1px solid rgba(0,229,255,.2);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; color: rgba(0,229,255,.3);
+    }
+
+    /* ── GALLERY ────────────────────────────────── */
+    #gallery { padding: 84px 0; overflow: hidden; background: var(--bg); }
+    .gallery-header { max-width: 960px; margin: 0 auto 44px; padding: 0 24px; }
+
+    .gallery-strip-wrap {
+      display: flex; flex-direction: column; gap: 14px;
+      mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+    }
+    .gallery-track {
+      display: flex; gap: 14px; width: max-content;
+    }
+    .gallery-track.left  { animation: scrollLeft  38s linear infinite; }
+    .gallery-track.right { animation: scrollRight 42s linear infinite; }
+    .gallery-track:hover { animation-play-state: paused; }
+
+    @keyframes scrollLeft  { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    @keyframes scrollRight { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+
+    .gallery-item {
+      flex-shrink: 0; cursor: pointer;
+      width: 130px; border-radius: 16px; overflow: hidden;
+      border: 1px solid rgba(123,47,255,.25);
+      transition: transform .3s, border-color .3s, box-shadow .3s;
+      position: relative;
+    }
+    @media(min-width:640px){ .gallery-item { width: 158px; } }
+    .gallery-item:hover {
+      transform: scale(1.06);
+      border-color: var(--m);
+      box-shadow: 0 0 24px rgba(247,0,255,.3), 0 20px 50px rgba(0,0,0,.55);
+      z-index: 2;
+    }
+    .gallery-item img {
+      width: 100%; display: block;
+      aspect-ratio: 9/19.5; object-fit: cover;
+    }
+    .gallery-item-overlay {
+      position: absolute; inset: 0;
+      background: rgba(0,0,0,0);
+      transition: background .3s;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .gallery-item:hover .gallery-item-overlay { background: rgba(247,0,255,.08); }
+    .gallery-zoom-icon {
+      opacity: 0; transition: opacity .3s;
+      color: #fff; font-family: 'Space Mono', monospace;
+      font-size: .58rem; letter-spacing: .12em;
+      background: rgba(0,0,0,.6); padding: 5px 10px;
+      border: 1px solid rgba(255,255,255,.2);
+    }
+    .gallery-item:hover .gallery-zoom-icon { opacity: 1; }
+
+    /* ── Lightbox ── */
+    #lightbox {
+      position: fixed; inset: 0; z-index: 600;
+      background: rgba(5,6,16,.96);
+      display: none; align-items: center; justify-content: center;
+      padding: 20px;
+    }
+    #lightbox.open { display: flex; }
+    .lb-inner {
+      position: relative; max-height: 92vh;
+      display: flex; align-items: center; gap: 16px;
+    }
+    #lb-img {
+      max-height: 88vh; max-width: min(360px, 82vw);
+      border-radius: 20px; object-fit: contain;
+      border: 1px solid rgba(0,229,255,.2);
+      box-shadow: 0 0 60px rgba(0,229,255,.12), 0 40px 100px rgba(0,0,0,.7);
+    }
+    .lb-nav {
+      font-family: 'Space Mono', monospace; font-size: .72rem;
+      letter-spacing: .1em; color: rgba(226,232,240,.5);
+      background: transparent;
+      border: 1px solid rgba(255,255,255,.1); padding: 12px 16px;
+      cursor: pointer; transition: all .2s; flex-shrink: 0;
+    }
+    .lb-nav:hover { color: var(--c); border-color: var(--c); }
+    .lb-close {
+      position: absolute; top: -44px; right: 0;
+      font-family: 'Space Mono', monospace; font-size: .62rem;
+      letter-spacing: .1em; color: rgba(226,232,240,.4);
+      background: transparent; border: 1px solid rgba(255,255,255,.08);
+      padding: 6px 14px; cursor: pointer; transition: all .2s;
+    }
+    .lb-close:hover { color: var(--c); border-color: var(--c); }
+    .lb-counter {
+      position: absolute; bottom: -36px; left: 50%; transform: translateX(-50%);
+      font-family: 'Space Mono', monospace; font-size: .6rem;
+      color: rgba(226,232,240,.3); letter-spacing: .1em; white-space: nowrap;
+    }
+
+    /* ── ABOUT ──────────────────────────────────── */
+    #about { background: rgba(9,12,30,.45); }
+    .about-card {
+      background: var(--bg2);
+      border: 1px solid rgba(0,229,255,.13);
+      padding: 44px 32px 40px; position: relative; overflow: hidden;
+    }
+    .about-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--c) 50%, transparent);
+    }
+    .about-card::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--m) 50%, transparent);
+    }
+    .about-bg-text {
+      position: absolute; top: 14px; right: 18px;
+      font-family: 'Rajdhani', sans-serif; font-size: clamp(4rem,14vw,7.5rem);
+      font-weight: 700; color: rgba(0,229,255,.025);
+      line-height: 1; pointer-events: none; user-select: none; letter-spacing: -.05em;
+    }
+    .about-h {
+      font-family: 'Rajdhani', sans-serif; font-weight: 700;
+      font-size: clamp(1.45rem, 4vw, 1.9rem);
+      color: #fff; line-height: 1.2; margin-bottom: 20px;
+    }
+    .about-h em { color: var(--c); font-style: normal; }
+    .about-sep {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
+    }
+    .about-sep-line { flex: 1; height: 1px; background: rgba(0,229,255,.11); }
+    .about-sep span {
+      font-family: 'Space Mono', monospace; font-size: .58rem;
+      letter-spacing: .14em; color: rgba(226,232,240,.28); white-space: nowrap;
+    }
+    .about-text {
+      font-size: .95rem; line-height: 1.85;
+      color: rgba(226,232,240,.66); max-width: 660px;
+      text-wrap: pretty;
+    }
+    .about-text strong { color: rgba(226,232,240,.88); font-weight: 500; }
+    .about-text em { color: var(--c); font-style: normal; }
+
+    /* ── FOOTER ─────────────────────────────────── */
+    footer {
+      border-top: 1px solid rgba(0,229,255,.08);
+      background: rgba(5,6,16,.9);
+      padding: 52px 24px 36px; position: relative; z-index: 1;
+    }
+    .foot-in { max-width: 960px; margin: 0 auto; }
+    .foot-brand { display: flex; align-items: center; gap: 10px; margin-bottom: 36px; }
+    .foot-brand img { height: 30px; width: 30px; object-fit: contain; }
+    .foot-brand-txt {
+      font-family: 'Rajdhani', sans-serif; font-weight: 700;
+      font-size: .88rem; letter-spacing: .13em; color: rgba(255,255,255,.45);
+    }
+    .foot-cols {
+      display: grid; grid-template-columns: 1fr; gap: 32px; margin-bottom: 36px;
+    }
+    @media(min-width:640px){ .foot-cols { grid-template-columns: 1fr 1fr; } }
+    .foot-col-label {
+      font-family: 'Space Mono', monospace; font-size: .58rem;
+      letter-spacing: .18em; color: rgba(226,232,240,.28); margin-bottom: 14px;
+    }
+    .socials-col { display: flex; flex-direction: column; gap: 10px; }
+    .social-link {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: 'Space Mono', monospace; font-size: .72rem;
+      letter-spacing: .07em; color: rgba(226,232,240,.5);
+      border: 1px solid rgba(255,255,255,.08); padding: 9px 16px;
+      text-decoration: none; transition: all .22s; width: fit-content;
+    }
+    .social-link:hover { color: var(--c); border-color: var(--c); box-shadow: 0 0 14px rgba(0,229,255,.18); }
+    .foot-email a {
+      font-family: 'Space Mono', monospace; font-size: .72rem;
+      color: rgba(226,232,240,.5); text-decoration: none;
+      letter-spacing: .04em; transition: color .2s;
+      display: block; margin-bottom: 8px;
+    }
+    .foot-email a:hover { color: var(--c); }
+    .foot-email-note {
+      font-family: 'Space Mono', monospace; font-size: .58rem;
+      color: rgba(226,232,240,.22); line-height: 1.7; letter-spacing: .04em;
+      margin-top: 8px;
+    }
+    .foot-bottom {
+      border-top: 1px solid rgba(255,255,255,.04);
+      padding-top: 22px;
+      display: flex; flex-wrap: wrap; gap: 14px;
+      align-items: center; justify-content: space-between;
+    }
+    .foot-copy {
+      font-family: 'Space Mono', monospace; font-size: .58rem;
+      color: rgba(226,232,240,.2); letter-spacing: .07em;
+    }
+    .foot-legal-links { display: flex; gap: 18px; }
+    .legal-trigger {
+      font-family: 'Space Mono', monospace; font-size: .58rem;
+      letter-spacing: .07em; color: rgba(226,232,240,.32);
+      cursor: pointer; background: none; border: none;
+      text-decoration: underline; text-underline-offset: 3px;
+      transition: color .2s; padding: 0;
+    }
+    .legal-trigger:hover { color: var(--c); }
+
+    /* ── MODALS ─────────────────────────────────── */
+    .modal {
+      position: fixed; inset: 0; z-index: 500;
+      background: rgba(5,6,16,.97);
+      display: none; overflow-y: auto;
+    }
+    .modal.open { display: block; }
+    .modal-box {
+      max-width: 780px; margin: 0 auto;
+      background: var(--bg3); min-height: 100vh;
+    }
+    @media(min-width:820px){
+      .modal-box {
+        margin: 40px auto 80px; min-height: auto;
+        border: 1px solid rgba(0,229,255,.2);
+        box-shadow: 0 0 80px rgba(0,229,255,.08);
+      }
+    }
+    .modal-hdr {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 24px;
+      border-bottom: 1px solid rgba(0,229,255,.12);
+      position: sticky; top: 0; background: var(--bg3); z-index: 10;
+    }
+    .modal-hdr-info { display: flex; flex-direction: column; gap: 3px; }
+    .modal-hdr-title {
+      font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 1.1rem;
+      color: var(--c); letter-spacing: .08em;
+    }
+    .modal-hdr-date {
+      font-family: 'Space Mono', monospace; font-size: .58rem;
+      color: rgba(226,232,240,.26); letter-spacing: .06em;
+    }
+    .modal-close-btn {
+      font-family: 'Space Mono', monospace; font-size: .68rem;
+      color: rgba(226,232,240,.45); background: transparent;
+      border: 1px solid rgba(255,255,255,.1); padding: 7px 16px;
+      cursor: pointer; letter-spacing: .08em; transition: all .22s;
+      white-space: nowrap;
+    }
+    .modal-close-btn:hover { color: var(--c); border-color: var(--c); }
+    .modal-body { padding: 28px 24px 64px; }
+
+    /* ── LEGAL CONTENT ──────────────────────────── */
+    .legal h2 {
+      font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 1rem;
+      color: rgba(226,232,240,.88); margin: 28px 0 10px;
+      padding-bottom: 6px; border-bottom: 1px solid rgba(0,229,255,.1); letter-spacing: .04em;
+    }
+    .legal h3 {
+      font-family: 'Space Mono', monospace; font-size: .74rem;
+      color: var(--m); margin: 18px 0 6px; letter-spacing: .04em;
+    }
+    .legal p { font-size: .875rem; line-height: 1.78; color: rgba(226,232,240,.62); margin-bottom: 12px; }
+    .legal ul { margin: 8px 0 12px 20px; }
+    .legal li { font-size: .875rem; color: rgba(226,232,240,.58); margin-bottom: 5px; list-style: disc; line-height: 1.65; }
+    .legal strong { color: rgba(226,232,240,.86); font-weight: 500; }
+    .legal a { color: var(--c); }
+    .legal code { font-family: 'Space Mono', monospace; font-size: .74rem; background: rgba(0,229,255,.07); color: var(--c); padding: 1px 5px; }
+    .legal blockquote { border-left: 2px solid var(--c); padding: 10px 16px; background: rgba(0,229,255,.04); margin: 14px 0; }
+    .legal blockquote p { margin-bottom: 0; font-style: italic; color: rgba(226,232,240,.7); }
+    .legal table { width: 100%; border-collapse: collapse; margin: 14px 0; display: block; overflow-x: auto; }
+    .legal th { background: rgba(0,229,255,.07); color: var(--c); padding: 8px 14px; text-align: left; font-family: 'Space Mono', monospace; font-size: .63rem; white-space: nowrap; }
+    .legal td { padding: 8px 14px; border-bottom: 1px solid rgba(255,255,255,.04); color: rgba(226,232,240,.6); font-size: .82rem; vertical-align: top; }
+    .legal hr { border: none; border-top: 1px solid rgba(255,255,255,.05); margin: 20px 0; }
+    .legal .caps { font-size: .82rem; color: rgba(226,232,240,.5); line-height: 1.7; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════ NAV -->
+<nav id="topnav">
+  <div class="nav-in">
+    <a class="nav-brand" href="#">
+      <img src="uploads/logo_splash.png" alt="TwinPixelsLab" />
+      <span class="nav-brand-txt">TWIN<span class="nc">PIXELS</span>LAB</span>
+    </a>
+    <div class="nav-badge">
+      <div class="pulse-dot"></div>
+      SOLANA SEEKER EXCLUSIVE
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════ HERO -->
+<section id="hero">
+  <div class="glow g1"></div>
+  <div class="glow g2"></div>
+  <div class="glow g3"></div>
+
+  <div class="hero-studio-tag">
+    <img src="uploads/logo_splash.png" alt="TwinPixelsLab" />
+    <span>BY TWINPIXELSLAB</span>
+  </div>
+
+  <img src="uploads/ochi_30.png" alt="OchiJump: Neon City" class="hero-game-logo" />
+
+  <p class="hero-sub">
+    The ultimate <span class="nc">120 FPS</span> Synthwave platformer.<br />
+    Built exclusively for <span class="nm">Solana Seeker</span>.
+  </p>
+
+  <div class="cta-wrap">
+    <button class="cta-btn" disabled>Coming Soon to dApp Store</button>
+    <span class="cta-hint">LAUNCH TBD &bull; SOLANA MAINNET</span>
+  </div>
+
+  <div class="hero-cast">
+    <div class="hero-cast-item"><img src="uploads/lil_beet_150.png" alt="Lil' Beet" /></div>
+    <div class="hero-cast-item"><img src="uploads/sus_211.png" alt="Sus" /></div>
+    <div class="hero-cast-item"><img src="uploads/vik_110.png" alt="Vik" /></div>
+    <div class="hero-cast-item"><img src="uploads/toasty_94.png" alt="Toasty" /></div>
+  </div>
+
+  <div class="scroll-arrow">
+    <span>SCROLL</span>
+    <div class="scroll-arrow-line"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ FEATURES -->
+<section id="features" class="sec">
+  <div class="sec-in">
+    <p class="eyebrow">Why OchiJump</p>
+    <h2 class="sec-title">Built Different.<br />Plays Different.</h2>
+    <div class="sec-rule"></div>
+    <div class="feat-grid">
+
+      <div class="feat-card">
+        <div class="feat-num">// 01</div>
+        <div class="feat-ttl">120 FPS Native Performance</div>
+        <p class="feat-desc">Smooth gameplay powered by <strong>React Native Skia</strong> — our custom engine squeezes every frame from your Seeker's hardware. Zero lag. Zero compromise.</p>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-num">// 02</div>
+        <div class="feat-ttl">Synthwave Vibe</div>
+        <p class="feat-desc">Dynamic neon environments, <strong>photorealistic weather effects</strong> — rain, neon fog, electric storms — all backed by custom Synthwave OSTs.</p>
+      </div>
+
+      <div class="feat-card">
+        <div class="feat-num">// 03</div>
+        <div class="feat-ttl">Web3 Native</div>
+        <p class="feat-desc">Seamless in-game progression recorded on the <strong>Solana blockchain</strong>. Your content, your chain — no middlemen, no servers.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ GAMEPLAY -->
+<section id="gameplay" class="sec">
+  <div class="sec-in">
+    <div class="gameplay-wrap">
+
+      <!-- Text -->
+      <div class="gameplay-text">
+        <p class="eyebrow">See it in Action</p>
+        <h2 class="sec-title">Real Gameplay.<br /><span class="nc">Raw Power.</span></h2>
+        <div class="sec-rule"></div>
+        <p class="gameplay-desc">
+          Every frame you see is running live on <strong>Solana Seeker hardware</strong> — no pre-renders, no tricks. Our custom <strong>React Native Skia</strong> engine pushes photo-realistic shaders and dynamic neon environments at a locked <strong>120 FPS</strong>.
+        </p>
+        <div class="gameplay-tags">
+          <span class="gameplay-tag">120 FPS</span>
+          <span class="gameplay-tag">SKIA SHADERS</span>
+          <span class="gameplay-tag">SOLANA SEEKER</span>
+          <span class="gameplay-tag">NEON CITY</span>
+        </div>
+      </div>
+
+      <!-- Phone mockup -->
+      <div class="phone-stage">
+        <div class="phone-glow-ring"></div>
+        <div class="phone-outer">
+          <div class="phone-shell">
+            <div class="phone-btn-r"></div>
+            <div class="phone-btn-l1"></div>
+            <div class="phone-btn-l2"></div>
+
+            <div class="phone-screen">
+              <video
+                src="uploads/gameplay_video.mp4"
+                autoplay
+                loop
+                muted
+                playsinline
+                preload="auto"
+              ></video>
+              <div class="phone-screen-overlay"></div>
+              <div class="phone-camera-hole"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ CAST -->
+<section id="cast" class="sec">
+  <div class="sec-in">
+    <p class="eyebrow">The Characters</p>
+    <h2 class="sec-title">Meet the Neon City Crew</h2>
+    <div class="sec-rule"></div>
+  </div>
+  <div style="max-width:960px;margin:0 auto;padding:0 24px;">
+    <div class="cast-scroller">
+      <div class="cast-row">
+
+        <div class="cast-card">
+          <div class="cast-img-wrap"><img src="uploads/lil_beet_150.png" alt="Lil' Beet" /></div>
+          <div class="cast-meta">
+            <div class="cast-name">Lil' Beet</div>
+            <div class="cast-role">Tech Botanist</div>
+          </div>
+        </div>
+
+        <div class="cast-card">
+          <div class="cast-img-wrap"><img src="uploads/sus_211.png" alt="Sus" /></div>
+          <div class="cast-meta">
+            <div class="cast-name">Sus</div>
+            <div class="cast-role">Cyber Chef</div>
+          </div>
+        </div>
+
+        <div class="cast-card">
+          <div class="cast-img-wrap"><img src="uploads/vik_110.png" alt="Vik" /></div>
+          <div class="cast-meta">
+            <div class="cast-name">Vik</div>
+            <div class="cast-role">Neon Berserker</div>
+          </div>
+        </div>
+
+        <div class="cast-card">
+          <div class="cast-img-wrap"><img src="uploads/toasty_94.png" alt="Toasty" /></div>
+          <div class="cast-meta">
+            <div class="cast-name">Toasty</div>
+            <div class="cast-role">Arcane Engineer</div>
+          </div>
+        </div>
+
+        <div class="cast-card cast-more">
+          <div class="cast-more-inner">
+            <div class="cast-more-plus">+</div>
+            MORE<br />COMING SOON
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ GALLERY -->
+<section id="gallery">
+  <div class="gallery-header">
+    <p class="eyebrow">Screenshots</p>
+    <h2 class="sec-title">Inside the Game</h2>
+    <div class="sec-rule"></div>
+  </div>
+
+  <div class="gallery-strip-wrap">
+    <!-- Row 1 → left (screens 1–6, duplicated) -->
+    <div class="gallery-track left" id="gtrack1">
+      <div class="gallery-item" onclick="lbOpen(0)"><img src="uploads/screen_1.webp" alt="Screen 1" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-zoom-icon">ZOOM</span></div></div>
+      <div class="gallery-item" onclick="lbOpen(1)"><img src="uploads/screen_2.webp" alt="Screen 2" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-zoom-icon">ZOOM</span></div></div>
+      <div class="gallery-item" onclick="lbOpen(2)"><img src="uploads/screen_3.webp" alt="Screen 3" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-zoom-icon">ZOOM</span></div></div>
+      <div class="gallery-item" onclick="lbOpen(3)"><img src="uploads/screen_4.webp" alt="Screen 4" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-zoom-icon">ZOOM</span></div></div>
+      <div class="gallery-item" onclick="lbOpen(4)"><img src="uploads/screen_5.webp" alt="Screen 5" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-zoom-icon">ZOOM</span></div></div>
+      <div class="gallery-item" onclick="lbOpen(5)"><img src="uploads/screen_6.webp" alt="Screen 6" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-zoom-icon">ZOOM</span></div></div>
+      <!-- duplicate for seamless loop -->
+      <div class="gallery-item" onclick="lbOpen(0)"><img src="uploads/screen_1.webp" alt="Screen 1" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-zoom-icon">ZOOM</span></div></div>
+      <div class="gallery-item" onclick="lbOpen(1)"><img src="uploads/screen_2.webp" alt="Screen 2" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-zoom-icon">ZOOM</span></div></div>
+      <div class="gallery-item" onclick="lbOpen(2)"><img src="uploads/screen_3.webp" alt="Screen 3" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-zoom-icon">ZOOM</span></div></div>
+      <div class="gallery-item" onclick="lbOpen(3)"><img src="uploads/screen_4.webp" alt="Screen 4" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-zoom-icon">ZOOM</span></div></div>
+      <div class="gallery-item" onclick="lbOpen(4)"><img src="uploads/screen_5.webp" alt="Screen 5" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-zoom-icon">ZOOM</span></div></div>
+      <div class="gallery-item" onclick="lbOpen(5)"><img src="uploads/screen_6.webp" alt="Screen 6" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-zoom-icon">ZOOM</span></div></div>
+    </div>
+
+    <!-- Row 2 → right (screens 7–12, duplicated) -->
+    <div class="gallery-track right" id="gtrack2">
+      <div class="gallery-item" onclick="lbOpen(6)"><img src="uploads/screen_7.webp" alt="Screen 7" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-zoom-icon">ZOOM</span></div></div>
+      <div class="gallery-item" onclick="lbOpen(7)"><img src="uploads/screen_8.webp" alt="Screen 8" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-zoom-icon">ZOOM</span></div></div>
+      <div class="gallery-item" onclick="lbOpen(8)"><img src="uploads/screen_9.webp" alt="Screen 9" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-zoom-icon">ZOOM</span></div></div>
+      <div class="gallery-item" onclick="lbOpen(9)"><img src="uploads/screen_10.webp" alt="Screen 10" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-zoom-icon">ZOOM</span></div></div>
+      <div class="gallery-item" onclick="lbOpen(10)"><img src="uploads/screen_11.webp" alt="Screen 11" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-zoom-icon">ZOOM</span></div></div>
+      <div class="gallery-item" onclick="lbOpen(11)"><img src="uploads/screen_12.webp" alt="Screen 12" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-zoom-icon">ZOOM</span></div></div>
+      <!-- duplicate -->
+      <div class="gallery-item" onclick="lbOpen(6)"><img src="uploads/screen_7.webp" alt="Screen 7" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-zoom-icon">ZOOM</span></div></div>
+      <div class="gallery-item" onclick="lbOpen(7)"><img src="uploads/screen_8.webp" alt="Screen 8" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-zoom-icon">ZOOM</span></div></div>
+      <div class="gallery-item" onclick="lbOpen(8)"><img src="uploads/screen_9.webp" alt="Screen 9" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-zoom-icon">ZOOM</span></div></div>
+      <div class="gallery-item" onclick="lbOpen(9)"><img src="uploads/screen_10.webp" alt="Screen 10" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-zoom-icon">ZOOM</span></div></div>
+      <div class="gallery-item" onclick="lbOpen(10)"><img src="uploads/screen_11.webp" alt="Screen 11" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-zoom-icon">ZOOM</span></div></div>
+      <div class="gallery-item" onclick="lbOpen(11)"><img src="uploads/screen_12.webp" alt="Screen 12" loading="lazy" /><div class="gallery-item-overlay"><span class="gallery-zoom-icon">ZOOM</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div id="lightbox">
+  <div class="lb-inner">
+    <button class="lb-close" onclick="lbClose()">[ CLOSE ]</button>
+    <button class="lb-nav" onclick="lbNav(-1)">&#8592;</button>
+    <img id="lb-img" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="" />
+    <button class="lb-nav" onclick="lbNav(1)">&#8594;</button>
+    <div class="lb-counter" id="lb-counter">1 / 12</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════ ABOUT -->
+<section id="about" class="sec">
+  <div class="sec-in">
+    <p class="eyebrow">About the Studio</p>
+    <h2 class="sec-title">The Team</h2>
+    <div class="sec-rule"></div>
+    <div class="about-card">
+      <div class="about-bg-text">TPL</div>
+      <h3 class="about-h">The Sibling Duo<br /><em>Behind the Neon</em></h3>
+      <div class="about-sep">
+        <div class="about-sep-line"></div>
+        <span>TWINPIXELSLAB &bull; EST. 2025</span>
+        <div class="about-sep-line"></div>
+      </div>
+      <p class="about-text">
+        TwinPixelsLab was born from a shared vision between a <strong>brother and sister</strong> — merging hardcore engineering with striking visual art. We built our studio to push the absolute limits of mobile hardware. By leveraging <em>React Native Skia</em>, we deliver uncompromising <strong>120 FPS experiences</strong> with photo-realistic shaders, tailored exclusively for the Solana Seeker. For us, Web3 integration is a natural extension of the experience, but the core will always be <strong>lightning-fast, visually stunning gameplay</strong>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════ FOOTER -->
+<footer>
+  <div class="foot-in">
+    <div class="foot-brand">
+      <img src="uploads/logo_splash.png" alt="TwinPixelsLab" />
+      <span class="foot-brand-txt">TWINPIXELSLAB</span>
+    </div>
+
+    <div class="foot-cols">
+      <div>
+        <div class="foot-col-label">// COMMUNITY</div>
+        <div class="socials-col">
+          <a href="https://x.com/twinpixelslab" target="_blank" rel="noopener" class="social-link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            X / TWITTER
+          </a>
+          <a href="https://t.me/twinpixelslab" target="_blank" rel="noopener" class="social-link">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+            TELEGRAM
+          </a>
+        </div>
+      </div>
+
+      <div class="foot-email">
+        <div class="foot-col-label">// CONTACT</div>
+        <a href="mailto:contact@twinpixelslab.com">contact@twinpixelslab.com</a>
+        <p class="foot-email-note">For press, partnerships,<br />and developer inquiries.</p>
+      </div>
+    </div>
+
+    <div class="foot-bottom">
+      <p class="foot-copy">© 2026 TWINPIXELSLAB. ALL RIGHTS RESERVED.</p>
+      <div class="foot-legal-links">
+        <button class="legal-trigger" onclick="openModal('modal-tos')">Terms of Service</button>
+        <button class="legal-trigger" onclick="openModal('modal-pp')">Privacy Policy</button>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     MODAL: TERMS OF SERVICE
+═══════════════════════════════════════════════════════════════ -->
+<div class="modal" id="modal-tos" role="dialog" aria-modal="true" aria-labelledby="tos-hdrtitle">
+  <div class="modal-box">
+    <div class="modal-hdr">
+      <div class="modal-hdr-info">
+        <span class="modal-hdr-title" id="tos-hdrtitle">TERMS OF SERVICE</span>
+        <span class="modal-hdr-date">LAST UPDATED: MAY 10, 2026 &bull; EFFECTIVE: MAY 10, 2026</span>
+      </div>
+      <button class="modal-close-btn" onclick="closeModal('modal-tos')">[ CLOSE ]</button>
+    </div>
+    <div class="modal-body">
+      <div class="legal">
+
+        <h2>1. Overview</h2>
+        <p>These Terms of Service ("Terms") govern your use of <strong>OchiJump</strong>, a mobile platformer game ("Game") developed and published by <strong>TwinPixelsLab</strong> ("we," "us," or "our").</p>
+        <p>OchiJump is designed exclusively for devices compatible with the <strong>Solana Mobile ecosystem</strong> (including the Solana Seeker). By downloading, installing, or playing the Game, you agree to these Terms in full.</p>
+
+        <h2>2. Acceptance of Terms</h2>
+        <p>By accessing or using OchiJump in any way, you confirm that you have read, understood, and agree to be bound by these Terms and our Privacy Policy. If you do not agree with any part of these Terms, do not use the Game.</p>
+
+        <h2>3. Eligibility</h2>
+        <ul>
+          <li>You must be at least <strong>18 years of age</strong> to use the Game. If you are between 13 and 17 years old, you may use the Game only with the express consent and supervision of a parent or legal guardian.</li>
+          <li>The Game is not intended for children under 13. We do not knowingly permit children under 13 to use the Game.</li>
+          <li>You must have access to a compatible device and a self-custodied Solana wallet to use in-game purchase features.</li>
+        </ul>
+
+        <h2>4. Game Description</h2>
+        <p>OchiJump is a single-player mobile platformer game. Gameplay is entirely local — the game runs on your device with no connection to TwinPixelsLab servers during play.</p>
+        <p>The Game includes optional in-game content (additional locations, visual skins, and game modes) that can be unlocked via purchases on the Solana blockchain. <strong>All base gameplay is available without any purchase.</strong></p>
+
+        <h2>5. Wallet Connection &amp; Non-Custodial Nature</h2>
+        <p>OchiJump integrates with your Solana wallet via the <strong>Solana Mobile Wallet Adapter (MWA)</strong> protocol. <strong>We never have access to your private keys or seed phrase.</strong> Wallet authorization happens directly between the Game and your device-resident wallet application.</p>
+        <ul>
+          <li>We <strong>cannot</strong> recover your wallet or funds if you lose access.</li>
+          <li>We <strong>cannot</strong> reverse, cancel, or refund any on-chain transaction on your behalf.</li>
+          <li>The security of your wallet is entirely your responsibility.</li>
+        </ul>
+
+        <h2>6. In-Game Purchases</h2>
+        <h3>6.1 How Purchases Work</h3>
+        <p>When you purchase in-game content, the transaction occurs <strong>directly between your Solana wallet and our on-chain smart contract</strong> (Program ID: <code>DmxfvDvSkm6XEnt7VXMGjpTpt9vkFu7j3vQNbHg8Ds8w</code> on Solana Mainnet-beta). TwinPixelsLab is not an intermediary in this payment.</p>
+
+        <h3>6.2 Nature of Virtual Goods — Important: These Are NOT NFTs</h3>
+        <p>All in-game purchases are stored as <strong>state data in a Program Derived Address (PDA)</strong> on the Solana blockchain, linked to your wallet's public key. <strong>You are purchasing a non-transferable license to access virtual content within the Game — not a digital asset.</strong></p>
+        <ul>
+          <li>You do <strong>not</strong> receive an NFT, cNFT, or any SPL token.</li>
+          <li>Unlocked content will <strong>not</strong> appear in your wallet's token or NFT gallery.</li>
+          <li>Unlocked content <strong>cannot</strong> be sold, transferred, or listed on any marketplace.</li>
+        </ul>
+
+        <h3>6.3 No Refunds</h3>
+        <p><strong>All purchases are final and non-refundable.</strong> Because transactions are confirmed and settled on the Solana blockchain, they are technically irreversible. By initiating a purchase, you acknowledge and accept that no refunds will be issued.</p>
+
+        <h3>6.4 Purchase Failure</h3>
+        <p>If a transaction is rejected by the network, no SOL will be deducted and the item will not be unlocked. If a transaction appears confirmed on-chain but content is not unlocked in-game, please contact us at the address below.</p>
+
+        <h2>7. Network Fees</h2>
+        <p>Each Solana blockchain transaction requires a small <strong>network fee</strong> (denominated in lamports). These fees are paid directly to the Solana validator network and are <strong>not</strong> revenue for TwinPixelsLab.</p>
+
+        <h2>8. Risk Disclosure</h2>
+        <p>You acknowledge and accept the following inherent risks:</p>
+        <ul>
+          <li><strong>Price Volatility.</strong> The value of SOL can fluctuate significantly.</li>
+          <li><strong>Transaction Failure.</strong> Network congestion or insufficient balance may cause a transaction to fail.</li>
+          <li><strong>Smart Contract Risk.</strong> Smart contracts may contain unforeseen bugs or vulnerabilities. Use of on-chain features is at your own risk.</li>
+          <li><strong>Wallet Loss.</strong> If you lose access to your Solana wallet, your unlocked in-game content may be permanently inaccessible.</li>
+        </ul>
+
+        <h2>9. Intellectual Property</h2>
+        <p>All content within OchiJump — including graphics, audio, game design, code, and the OchiJump name and logo — is the exclusive intellectual property of TwinPixelsLab. You are granted a limited, non-exclusive, non-transferable, revocable license to use the Game for personal, non-commercial purposes only. You may not copy, modify, distribute, reverse-engineer, or use the Game's assets for any commercial purpose without our written consent.</p>
+
+        <h2>10. Prohibited Conduct</h2>
+        <p>You agree not to use cheats, exploits, bots, or unauthorized third-party tools; attempt to interfere with the Game or our smart contracts; use the Game for fraudulent or illegal activity; or impersonate TwinPixelsLab or any other entity.</p>
+
+        <h2>11. Disclaimer of Warranties</h2>
+        <p class="caps">THE GAME IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED. TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, TWINPIXELSLAB DISCLAIMS ALL WARRANTIES, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.</p>
+
+        <h2>12. Limitation of Liability</h2>
+        <p class="caps">TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL TWINPIXELSLAB BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES ARISING OUT OF OR RELATED TO YOUR USE OF THE GAME. OUR TOTAL AGGREGATE LIABILITY FOR ANY CLAIM SHALL NOT EXCEED THE TOTAL AMOUNT YOU PAID FOR IN-GAME PURCHASES IN THE 90 DAYS PRECEDING THE CLAIM.</p>
+
+        <h2>13. Governing Law</h2>
+        <p>These Terms are governed by and construed in accordance with the laws of <strong>Ukraine</strong>, without regard to its conflict of law provisions. Any disputes shall be subject to the exclusive jurisdiction of the courts located in Ukraine.</p>
+
+        <h2>14. Changes to These Terms</h2>
+        <p>We may update these Terms from time to time. We will update the "Last Updated" date at the top of this page and publish the revised Terms on our website. Your continued use of the Game after changes are posted constitutes your acceptance of the revised Terms.</p>
+
+        <h2>15. Contact</h2>
+        <p><strong>TwinPixelsLab</strong><br />
+        Email: <a href="mailto:contact@twinpixelslab.com">contact@twinpixelslab.com</a><br />
+        Website: <a href="https://twinpixelslab.com" target="_blank" rel="noopener">https://twinpixelslab.com</a></p>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     MODAL: PRIVACY POLICY
+═══════════════════════════════════════════════════════════════ -->
+<div class="modal" id="modal-pp" role="dialog" aria-modal="true" aria-labelledby="pp-hdrtitle">
+  <div class="modal-box">
+    <div class="modal-hdr">
+      <div class="modal-hdr-info">
+        <span class="modal-hdr-title" id="pp-hdrtitle">PRIVACY POLICY</span>
+        <span class="modal-hdr-date">LAST UPDATED: MAY 10, 2026 &bull; EFFECTIVE: MAY 10, 2026</span>
+      </div>
+      <button class="modal-close-btn" onclick="closeModal('modal-pp')">[ CLOSE ]</button>
+    </div>
+    <div class="modal-body">
+      <div class="legal">
+
+        <blockquote><p><strong>The short version:</strong> OchiJump has no backend servers. We do not collect your name, email address, location, or any personal identifiers on our own systems. Almost everything stays on your device. The one exception is the Solana blockchain — it is public by design.</p></blockquote>
+
+        <h2>1. Who We Are</h2>
+        <p>This Privacy Policy describes how <strong>TwinPixelsLab</strong> ("we," "us," or "our") handles information in connection with <strong>OchiJump</strong>, a mobile platformer game available exclusively for Solana Mobile-compatible devices.</p>
+
+        <h2>2. Data We Do NOT Collect</h2>
+        <p>We do not operate backend servers or databases. As a result, we do <strong>not</strong> collect, store, or process:</p>
+        <ul>
+          <li>Your name, username, or email address</li>
+          <li>Your phone number or physical address</li>
+          <li>Your geographic location or GPS data</li>
+          <li>Device identifiers (IMEI, advertising ID)</li>
+          <li>Biometric data or financial credentials</li>
+          <li>Behavioral analytics or usage telemetry</li>
+        </ul>
+        <p>OchiJump contains <strong>no analytics SDKs</strong>, <strong>no advertising SDKs</strong>, and <strong>no crash-reporting services</strong>.</p>
+
+        <h2>3. Data Stored Locally on Your Device</h2>
+        <p>OchiJump stores a small amount of data in your device's local storage using the <code>react-native-mmkv</code> library. This data never leaves your device and is never transmitted to TwinPixelsLab servers.</p>
+        <table>
+          <thead><tr><th>Key</th><th>What it is</th><th>Why</th></tr></thead>
+          <tbody>
+            <tr><td><code>ochi_wallet_pubkey</code></td><td>Your Solana wallet's Base58 public key</td><td>So you don't have to reconnect your wallet every launch</td></tr>
+            <tr><td><code>solana_auth_token</code></td><td>Mobile Wallet Adapter session token</td><td>Maintains your wallet authorization session</td></tr>
+            <tr><td>Game progress &amp; high scores</td><td>Your in-game records and unlocked content state</td><td>Local save data</td></tr>
+          </tbody>
+        </table>
+        <p><strong>All locally stored data is deleted when you uninstall OchiJump.</strong></p>
+
+        <h2>4. Blockchain &amp; Public Data</h2>
+        <h3>4.1 What Goes On-Chain</h3>
+        <p>When you make an in-game purchase, a transaction is submitted to the <strong>Solana blockchain</strong>. This transaction is permanent and publicly visible. The following information is recorded on-chain:</p>
+        <ul>
+          <li>Your <strong>wallet's public address</strong></li>
+          <li>The <strong>item(s) purchased</strong> (encoded as bits in your <code>PlayerInventory</code> account)</li>
+          <li>The <strong>SOL amount transferred</strong> to the OchiJump treasury wallet</li>
+          <li>The <strong>timestamp</strong> of the transaction</li>
+        </ul>
+
+        <h3>4.2 Your PlayerInventory PDA Is Public</h3>
+        <p>Your in-game item inventory is stored in a <strong>Program Derived Address (PDA)</strong> account managed by the OchiJump smart contract (Program ID: <code>DmxfvDvSkm6XEnt7VXMGjpTpt9vkFu7j3vQNbHg8Ds8w</code>). This account is tied to your wallet's public key and is <strong>readable by anyone</strong> who queries the Solana blockchain.</p>
+
+        <h3>4.3 These Are NOT NFTs or Tokens</h3>
+        <p>Your purchased items are stored as <strong>technical state records</strong> in the PDA — they are <strong>not</strong> NFT tokens, cNFTs, or SPL tokens. They will not appear in your wallet's token or NFT gallery and are not tradable or transferable.</p>
+
+        <h3>4.4 We Cannot Delete On-Chain Data</h3>
+        <p>The nature of a public blockchain is that records are <strong>permanent and immutable</strong>. TwinPixelsLab has no ability to delete or modify your on-chain transaction history or inventory PDA. <strong>The right to erasure (right to be forgotten) does not apply to on-chain data.</strong></p>
+        <p>Anyone can view Solana transactions using <a href="https://explorer.solana.com" target="_blank" rel="noopener">Solana Explorer</a> or <a href="https://solscan.io" target="_blank" rel="noopener">Solscan</a>.</p>
+
+        <h2>5. Android Permissions Explained</h2>
+        <h3>android.permission.INTERNET</h3>
+        <p>Used exclusively to communicate with Solana RPC endpoints (Helius and the public Solana mainnet) to read the state of the OchiJump smart contract, fetch your existing item inventory, and submit signed purchase transactions. No personal data is included in these requests.</p>
+        <h3>android.permission.VIBRATE</h3>
+        <p>Used to provide haptic feedback during gameplay. No data is collected through this permission.</p>
+
+        <h2>6. Third-Party Services</h2>
+        <h3>Helius (helius.dev)</h3>
+        <p>Our primary Solana RPC provider. Helius may log your IP address and request metadata. <a href="https://www.helius.dev/privacy-policy" target="_blank" rel="noopener">Privacy Policy →</a></p>
+        <h3>Solana Foundation (Public RPC)</h3>
+        <p>Used as a fallback RPC endpoint. Similar logging may apply. <a href="https://solana.com/privacy-policy" target="_blank" rel="noopener">Privacy Policy →</a></p>
+        <h3>Device Wallet App</h3>
+        <p>Wallet authorization and transaction signing occur within your device's native wallet application via the Solana Mobile Wallet Adapter (MWA) protocol. OchiJump communicates with your wallet using a local device intent — we never receive your private keys or seed phrase.</p>
+
+        <h2>7. Children's Privacy</h2>
+        <p>OchiJump is not directed to children under the age of 13. We do not knowingly collect personal information from children under 13. Users between 13 and 17 may use the Game only with parental or guardian consent.</p>
+
+        <h2>8. Your Rights and Choices</h2>
+        <p><strong>Deleting Local Data:</strong> Simply <strong>uninstall OchiJump</strong> from your device.</p>
+        <p><strong>Disconnecting Your Wallet:</strong> You can disconnect your wallet at any time using the in-game Disconnect option. You should also revoke OchiJump's authorization within your wallet application.</p>
+        <p><strong>On-Chain Data:</strong> On-chain records cannot be deleted by TwinPixelsLab or by you. To stop new on-chain data being associated with your wallet, simply stop making purchases and disconnect your wallet.</p>
+
+        <h2>9. Data Retention</h2>
+        <ul>
+          <li><strong>Local device data</strong> is retained until you uninstall the app.</li>
+          <li><strong>On-chain data</strong> is permanent by the nature of the Solana blockchain.</li>
+          <li>We retain no personal data on our servers because we have no servers that store user data.</li>
+        </ul>
+
+        <h2>10. Security</h2>
+        <ul>
+          <li><strong>HTTPS only.</strong> All network communications use encrypted HTTPS connections.</li>
+          <li><strong>No cloud backup.</strong> Android's automatic backup is disabled (<code>android:allowBackup="false"</code>).</li>
+          <li><strong>No private key handling.</strong> Transaction signing occurs entirely within your wallet app.</li>
+        </ul>
+
+        <h2>11. Changes to This Policy</h2>
+        <p>We may update this Privacy Policy from time to time. Changes will be reflected by the updated "Last Updated" date at the top of this document. Your continued use of OchiJump after changes are posted constitutes your acceptance of the revised Privacy Policy.</p>
+
+        <h2>12. Contact</h2>
+        <p><strong>TwinPixelsLab</strong><br />
+        Email: <a href="mailto:contact@twinpixelslab.com">contact@twinpixelslab.com</a><br />
+        Website: <a href="https://twinpixelslab.com" target="_blank" rel="noopener">https://twinpixelslab.com</a></p>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ── Lightbox ──────────────────────────────────
+  var lbImages = [
+    'uploads/screen_1.webp','uploads/screen_2.webp','uploads/screen_3.webp',
+    'uploads/screen_4.webp','uploads/screen_5.webp','uploads/screen_6.webp',
+    'uploads/screen_7.webp','uploads/screen_8.webp','uploads/screen_9.webp',
+    'uploads/screen_10.webp','uploads/screen_11.webp','uploads/screen_12.webp'
+  ];
+  var lbCurrent = 0;
+  function lbOpen(idx) {
+    lbCurrent = idx;
+    document.getElementById('lb-img').src = lbImages[lbCurrent];
+    document.getElementById('lb-counter').textContent = (lbCurrent + 1) + ' / ' + lbImages.length;
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function lbClose() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function lbNav(dir) {
+    lbCurrent = (lbCurrent + dir + lbImages.length) % lbImages.length;
+    document.getElementById('lb-img').src = lbImages[lbCurrent];
+    document.getElementById('lb-counter').textContent = (lbCurrent + 1) + ' / ' + lbImages.length;
+  }
+  document.getElementById('lightbox').addEventListener('click', function(e) {
+    if (e.target === this) lbClose();
+  });
+  document.addEventListener('keydown', function(e) {
+    var lb = document.getElementById('lightbox');
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'ArrowLeft')  lbNav(-1);
+    if (e.key === 'ArrowRight') lbNav(1);
+  });
+
+  function openModal(id) {
+    var el = document.getElementById(id);
+    el.classList.add('open');
+    el.scrollTop = 0;
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(id) {
+    document.getElementById(id).classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  // Close on backdrop click
+  document.querySelectorAll('.modal').forEach(function(m) {
+    m.addEventListener('click', function(e) {
+      if (e.target === m) closeModal(m.id);
+    });
+  });
+  // Close on Escape
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      document.querySelectorAll('.modal.open').forEach(function(m) {
+        closeModal(m.id);
+      });
+    }
+  });
+  // Subtle nav shrink on scroll
+  window.addEventListener('scroll', function() {
+    var nav = document.getElementById('topnav');
+    if (window.scrollY > 60) {
+      nav.style.borderBottomColor = 'rgba(0,229,255,.18)';
+    } else {
+      nav.style.borderBottomColor = 'rgba(0,229,255,.1)';
+    }
+  }, { passive: true });
+</script>
+</body>
+</html>
