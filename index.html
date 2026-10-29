@@ -12,12 +12,12 @@
     <link rel="manifest" href="/site.webmanifest" />
     <meta
       name="description"
-      content="The ultimate 120 FPS Synthwave platformer. Built exclusively for Solana Seeker."
+      content="A 120 FPS neon action-platformer stuffed with 90s toys. Built for Solana Seeker."
     />
     <meta property="og:title" content="OchiJump: Neon City" />
     <meta
       property="og:description"
-      content="The ultimate 120 FPS Synthwave platformer. Built exclusively for Solana Seeker."
+      content="A 120 FPS neon action-platformer stuffed with 90s toys. Built for Solana Seeker."
     />
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -763,6 +763,12 @@
         margin-top: 3px;
         letter-spacing: 0.05em;
       }
+      .cast-bio {
+        font-size: 0.74rem;
+        line-height: 1.6;
+        color: rgba(226, 232, 240, 0.58);
+        margin-top: 9px;
+      }
       .cast-more {
         display: flex;
         flex-direction: column;
@@ -1426,8 +1432,8 @@
       />
 
       <p class="hero-sub">
-        The ultimate <span class="nc">120 FPS</span> Synthwave platformer.<br />
-        Built exclusively for <span class="nm">Solana Seeker</span>.
+        A <span class="nc">120 FPS</span> neon action-platformer<br />
+        stuffed with 90s toys. Built for <span class="nm">Solana Seeker</span>.
       </p>
 
       <div class="cta-wrap">
@@ -1465,31 +1471,34 @@
         <div class="feat-grid">
           <div class="feat-card">
             <div class="feat-num">// 01</div>
-            <div class="feat-ttl">120 FPS Native Performance</div>
+            <div class="feat-ttl">Fight Your Way Up</div>
             <p class="feat-desc">
-              Smooth gameplay powered by <strong>React Native Skia</strong> —
-              our custom engine squeezes every frame from your Seeker's
-              hardware. Zero lag. Zero compromise.
+              Climb a neon city with an <strong>arsenal of 20+ weapons</strong>
+              you upgrade mid-run, implants you fire with a swipe, and enemies
+              that shoot back — mines, flamethrowers, dynamite, chasers.
             </p>
           </div>
 
           <div class="feat-card">
             <div class="feat-num">// 02</div>
-            <div class="feat-ttl">Synthwave Vibe</div>
+            <div class="feat-ttl">A Pocket Full of 90s Toys</div>
             <p class="feat-desc">
-              Dynamic neon environments,
-              <strong>photorealistic weather effects</strong> — rain, neon fog,
-              electric storms — all backed by custom Synthwave OSTs.
+              Between runs, raise your <strong>Ochi-Pet</strong> and slot in
+              its cartridges, or pick up one of the
+              <strong>retro LCD handhelds</strong> — dice, poker, solitaire, with
+              more on the way. Pagers, CDs and cartridges turn up in your
+              arsenal too.
             </p>
           </div>
 
           <div class="feat-card">
             <div class="feat-num">// 03</div>
-            <div class="feat-ttl">Web3 Native</div>
+            <div class="feat-ttl">120 FPS on Seeker</div>
             <p class="feat-desc">
-              Seamless in-game progression recorded on the
-              <strong>Solana blockchain</strong>. Your content, your chain — no
-              middlemen, no servers.
+              A custom <strong>React Native Skia</strong> engine squeezes every
+              frame from your Seeker. Play as a guest, or connect your wallet to
+              keep your account on any device and pay with
+              <strong>SOL or SKR</strong>.
             </p>
           </div>
         </div>
@@ -1511,8 +1520,8 @@
               Every frame you see is running live on
               <strong>Solana Seeker hardware</strong> — no pre-renders, no
               tricks. Our custom <strong>React Native Skia</strong> engine
-              pushes photo-realistic shaders and dynamic neon environments at a
-              locked <strong>120 FPS</strong>.
+              drives neon cities, weather, explosions and full-screen effects
+              at a locked <strong>120 FPS</strong>.
             </p>
             <div class="gameplay-tags">
               <span class="gameplay-tag">120 FPS</span>
@@ -1563,6 +1572,24 @@
             <div class="cast-card">
               <div class="cast-img-wrap">
                 <img
+                  src="uploads/ochi_30.png"
+                  alt="Ochi"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="cast-meta">
+                <div class="cast-name">Ochi</div>
+                <div class="cast-role">Captain &bull; Fire</div>
+                <p class="cast-bio">
+                  The boss of the Neon City Crew. Once a space pirate and smuggler, now (mostly) legit. Years of drifting through space turned up Earth's old toys, and Ochi fell for them hard. The handhelds, the Ochi-Pet and its cartridges are all made by Ochi's own company.
+                </p>
+              </div>
+            </div>
+
+            <div class="cast-card">
+              <div class="cast-img-wrap">
+                <img
                   src="uploads/lil_beet_150.png"
                   alt="Lil' Beet"
                   loading="lazy"
@@ -1571,7 +1598,10 @@
               </div>
               <div class="cast-meta">
                 <div class="cast-name">Lil' Beet</div>
-                <div class="cast-role">Tech Botanist</div>
+                <div class="cast-role">Tech Botanist &bull; Acid</div>
+                <p class="cast-bio">
+                  Grows things where nothing should grow, circuits included. Small, cheerful and a little bit toxic.
+                </p>
               </div>
             </div>
 
@@ -1586,7 +1616,10 @@
               </div>
               <div class="cast-meta">
                 <div class="cast-name">Sus</div>
-                <div class="cast-role">Cyber Chef</div>
+                <div class="cast-role">Cyber Chef &bull; Lightning</div>
+                <p class="cast-bio">
+                  Cooks for the crew and cooks up trouble. Nobody knows what's in the soup, and Sus likes it that way.
+                </p>
               </div>
             </div>
 
@@ -1601,7 +1634,10 @@
               </div>
               <div class="cast-meta">
                 <div class="cast-name">Vik</div>
-                <div class="cast-role">Neon Berserker</div>
+                <div class="cast-role">Neon Berserker &bull; Frost</div>
+                <p class="cast-bio">
+                  Horns, an axe and a teapot nobody asks about. Vik solves problems head-first and stops when the problem does.
+                </p>
               </div>
             </div>
 
@@ -1616,7 +1652,10 @@
               </div>
               <div class="cast-meta">
                 <div class="cast-name">Toasty</div>
-                <div class="cast-role">Arcane Engineer</div>
+                <div class="cast-role">Arcane Engineer &bull; Electro</div>
+                <p class="cast-bio">
+                  Half wizard, half machine, all engineer. If it hums, sparks or by rights shouldn't work, Toasty built it, and it works.
+                </p>
               </div>
             </div>
 
@@ -2053,7 +2092,7 @@
               >TERMS OF SERVICE</span
             >
             <span class="modal-hdr-date"
-              >LAST UPDATED: JUNE 24, 2026 &bull; EFFECTIVE: JUNE 24, 2026</span
+              >LAST UPDATED: OCTOBER 16, 2026 &bull; EFFECTIVE: OCTOBER 16, 2026</span
             >
           </div>
           <button class="modal-close-btn" onclick="closeModal('modal-tos')">
@@ -2064,408 +2103,207 @@
           <div class="legal">
             <h2>1. Overview</h2>
             <p>
-              These Terms of Service ("Terms") govern your use of
-              <strong>OchiJump</strong>, a mobile platformer game ("Game")
-              developed and published by <strong>TwinPixelsLab</strong> ("we,"
-              "us," or "our").
+              These Terms of Service ("Terms") govern your use of <strong>OchiJump</strong>, a mobile platformer game ("Game") developed and published by <strong>TwinPixelsLab</strong> ("we," "us," or "our").
             </p>
             <p>
-              OchiJump is designed for devices compatible with the
-              <strong>Solana Mobile ecosystem</strong> (including the Solana
-              Seeker). The Game runs locally on your device, with optional cloud
-              features — account-based progress sync and global Daily Run
-              leaderboards — for players who connect a Solana wallet. By
-              downloading, installing, or playing the Game, you agree to these
-              Terms in full.
+              OchiJump is designed for Android devices, including those of the <strong>Solana Mobile ecosystem</strong> (such as the Solana Seeker). The Game runs on your device and uses our online services for your game account, cloud save, in-game economy, leaderboards and purchases. By downloading, installing, or playing the Game, you agree to these Terms in full.
             </p>
 
             <h2>2. Acceptance of Terms</h2>
             <p>
-              By accessing or using OchiJump in any way, you confirm that you
-              have read, understood, and agree to be bound by these Terms and
-              our Privacy Policy.
+              By accessing or using OchiJump in any way, you confirm that you have read, understood, and agree to be bound by these Terms and our <a href="#privacy">Privacy Policy</a>.
             </p>
             <p>
-              If you do not agree with any part of these Terms, do not use the
-              Game.
+              If you do not agree with any part of these Terms, do not use the Game.
             </p>
 
             <h2>3. Eligibility</h2>
             <ul>
-              <li>
-                You must be at least <strong>18 years of age</strong> to use the
-                Game. If you are between 13 and 17 years old, you may use the
-                Game only with the express consent and supervision of a parent
-                or legal guardian who accepts these Terms on your behalf.
-              </li>
-              <li>
-                The Game is not intended for children under 13. We do not
-                knowingly permit children under 13 to use the Game.
-              </li>
-              <li>
-                You must have access to a compatible device and a self-custodied
-                Solana wallet (e.g., the device-native wallet on Solana Seeker)
-                to use the wallet-connected features, including in-game
-                purchases, cloud sync, and leaderboards.
-              </li>
+              <li>You must be at least <strong>18 years of age</strong> to use the Game. If you are between 13 and 17 years old, you may use the Game only with the express consent and supervision of a parent or legal guardian who accepts these Terms on your behalf.</li>
+              <li>The Game is not intended for children under 13. We do not knowingly permit children under 13 to use the Game.</li>
+              <li>You need a compatible device. A Solana wallet is <strong>not</strong> required to play or to have a game account; it is required only to link your account to a wallet and to buy hard currency (Section 8).</li>
             </ul>
 
             <h2>4. Game Description</h2>
             <p>
-              OchiJump is a mobile platformer game. The core gameplay loop runs
-              locally on your device. The Game also offers optional online
-              features:
+              OchiJump is a mobile platformer game. The core gameplay runs on your device. The Game also includes:
             </p>
             <ul>
-              <li>
-                <strong>Cloud progress sync</strong> — when you connect a
-                wallet, your progress is saved to our servers so you can restore
-                it across devices.
-              </li>
-              <li>
-                <strong>Daily Runs &amp; global leaderboards</strong> — a
-                rotating daily challenge whose results are submitted to
-                <strong>public</strong> leaderboards visible to other players.
-              </li>
-              <li>
-                <strong>Optional purchases</strong> — additional locations,
-                visual skins, and game modes that can be unlocked on the Solana
-                blockchain.
-              </li>
+              <li><strong>A game account and cloud save</strong> — your progress is saved to our servers and can be restored on another device once your account is linked to a wallet.</li>
+              <li><strong>Leaderboards</strong> — your best results are published on <strong>public</strong> leaderboards.</li>
+              <li><strong>An in-game economy</strong> — <strong>soft currency</strong>, earned by playing, and <strong>hard currency</strong>, which can be bought (Section 8) or received in the Game (for example through rewards or promo codes). Both can be spent on in-game content such as hero skins, weapon skins, implants and their upgrades, deck cells, Ochi-Pet cosmetics, revives and re-rolls.</li>
+              <li><strong>The Ochi-Pet</strong>, a pocket-pet toy with mini-games inside the Game.</li>
             </ul>
             <p>
-              All base gameplay is available without any purchase, and the Game
-              remains playable offline; online features simply require
-              connectivity and, in most cases, a connected wallet.
+              All base gameplay is available without any purchase. Some features need a network connection; the Game remains playable offline, and what you earn or spend offline is synchronised when you are back online.
             </p>
 
-            <h2>5. Accounts, Cloud Sync &amp; Leaderboards</h2>
+            <h2>5. Accounts, Cloud Save &amp; Leaderboards</h2>
             <h3>5.1 Your Account</h3>
             <p>
-              When you connect your Solana wallet, you create an account
-              identified by your wallet's <strong>public address</strong> (and
-              your <code>.sol</code> / <code>.skr</code> domain name, if you
-              have one). You are responsible for maintaining control of your
-              wallet; anyone who controls your wallet controls your account.
+              The Game creates a <strong>guest account</strong> for your device automatically. You may <strong>link a Solana wallet</strong> to it; the wallet then becomes the key to that account on any device. You are responsible for maintaining control of your wallet: anyone who controls it controls the linked account. A device may hold several accounts and switch between them; nothing is merged between accounts.
             </p>
-
-            <h3>5.2 Cloud Sync</h3>
+            <h3>5.2 Guest Accounts</h3>
             <p>
-              Your progress — such as experience, unlocked locations, and
-              unlocked skins — is synced to our servers so it can be restored on
-              other devices. We strive to keep this data accurate and available,
-              but we do not guarantee that cloud data will be free from loss,
-              corruption, or interruption, and you are encouraged to treat your
-              local device as your primary save where possible.
+              A guest account lives on the device that created it. <strong>If you lose or reset that device, or uninstall the Game, before linking a wallet, the guest account and everything in it may be lost</strong>, including currency and items. Link a wallet to protect your progress. We may delete guest accounts that have been inactive for a long time and hold nothing of value (no currency, items, purchases or linked wallet).
             </p>
-
-            <h3>5.3 Public Leaderboards</h3>
+            <h3>5.3 Cloud Save</h3>
             <p>
-              Participation in <strong>Daily Runs</strong> means your best daily
-              score, together with your wallet address or domain name, is
-              published to a <strong>global, public leaderboard</strong> that
-              other players can see. Do not participate in Daily Runs if you do
-              not want your wallet address or domain name displayed publicly in
-              this context.
+              We strive to keep your saved progress accurate and available, but we do not guarantee that cloud data will be free from loss, corruption or interruption.
+            </p>
+            <h3>5.4 Public Leaderboards</h3>
+            <p>
+              Your best results are published on <strong>global, public leaderboards</strong> under a display name: your <code>.sol</code> / <code>.skr</code> domain or a shortened wallet address if your account has a wallet, otherwise a randomly generated name.
             </p>
 
             <h2>6. Wallet Connection &amp; Non-Custodial Nature</h2>
             <p>
-              OchiJump integrates with your Solana wallet via the
-              <strong>Solana Mobile Wallet Adapter (MWA)</strong> protocol.
-              Signing in is performed by having your wallet sign a one-time
-              "Sign In With Solana" message that proves you control the wallet.
+              OchiJump connects to your Solana wallet via the <strong>Solana Mobile Wallet Adapter (MWA)</strong> protocol. Signing in means your wallet signs a one-time "Sign In With Solana" message that proves you control it.
             </p>
             <p>
-              <strong
-                >We never have access to your private keys or seed
-                phrase.</strong
-              >
-              Wallet authorization happens directly between the Game and your
-              device-resident wallet application. TwinPixelsLab does not
-              receive, store, or process your private keys under any
-              circumstances. This means:
+              <strong>We never have access to your private keys or seed phrase.</strong> All authorization and signing happen directly in your wallet app. This means:
             </p>
             <ul>
-              <li>
-                We <strong>cannot</strong> recover your wallet or funds if you
-                lose access.
-              </li>
-              <li>
-                We <strong>cannot</strong> initiate, reverse, cancel, or refund
-                any on-chain transaction on your behalf.
-              </li>
-              <li>
-                The security of your wallet is entirely your responsibility.
-              </li>
+              <li>We <strong>cannot</strong> recover your wallet or funds if you lose access.</li>
+              <li>We <strong>cannot</strong> initiate, reverse, cancel or refund any on-chain transaction on your behalf.</li>
+              <li>The security of your wallet is entirely your responsibility.</li>
             </ul>
 
-            <h2>7. In-Game Purchases (Solana)</h2>
-            <h3>7.1 How Purchases Work</h3>
+            <h2>7. Virtual Currency and Items</h2>
             <p>
-              When you purchase in-game content (locations, skins, or bundles),
-              the transaction occurs
-              <strong
-                >directly between your Solana wallet and our on-chain smart
-                contract</strong
-              >
-              (Program ID:
-              <code>DmxfvDvSkm6XEnt7VXMGjpTpt9vkFu7j3vQNbHg8Ds8w</code> on
-              Solana Mainnet-beta). TwinPixelsLab is not an intermediary in this
-              payment, and all blockchain transactions are executed and settled
-              by the <strong>Solana network</strong>, not by us.
-            </p>
-
-            <h3>7.2 Nature of Virtual Goods — Important: These Are NOT NFTs</h3>
-            <p>
-              All in-game purchases are stored as
-              <strong>state data in a Program Derived Address (PDA)</strong> on
-              the Solana blockchain, linked to your wallet's public key.
-            </p>
-            <p>
-              <strong
-                >You are purchasing a non-transferable license to access virtual
-                content within the Game — not a digital asset.</strong
-              >
-              Specifically:
+              Soft currency, hard currency, and the content you obtain with them ("Virtual Items") are a <strong>limited, personal, non-transferable, revocable license</strong> to use that content within the Game. They are not your property and are <strong>not</strong> cryptocurrency, tokens or NFTs. Specifically:
             </p>
             <ul>
-              <li>
-                You do <strong>not</strong> receive a Non-Fungible Token (NFT),
-                a Compressed NFT (cNFT), or any SPL token into your wallet.
-              </li>
-              <li>
-                Unlocked content will <strong>not</strong> appear in your
-                wallet's token list or NFT gallery.
-              </li>
-              <li>
-                Unlocked content <strong>cannot</strong> be sold, transferred to
-                another player, or listed on any NFT marketplace.
-              </li>
-            </ul>
-            <p>
-              This model is equivalent to a traditional in-app purchase, where
-              the Solana blockchain serves as the database instead of a
-              centralized server.
-            </p>
-
-            <h3>7.3 All Sales Are Final</h3>
-            <p>
-              <strong>All purchases are final and non-refundable.</strong>
-              Because transactions are confirmed and settled on the Solana
-              blockchain, they are <strong>technically irreversible</strong>.
-              Once a transaction is confirmed by the network, TwinPixelsLab has
-              no ability to reverse it or return funds, regardless of the
-              reason. By initiating a purchase, you acknowledge and accept that
-              no refunds will be issued.
-            </p>
-
-            <h3>7.4 Purchase Failure</h3>
-            <p>
-              If a transaction is rejected by the network (e.g., insufficient
-              SOL balance, network congestion), no SOL will be deducted and the
-              item will not be unlocked. You may try again. If a transaction
-              appears confirmed on-chain but content is not unlocked in-game,
-              please contact us and we will investigate the on-chain record.
-            </p>
-
-            <h2>8. Network Fees</h2>
-            <p>
-              Each Solana blockchain transaction requires a small
-              <strong>network fee</strong> (denominated in lamports, a fraction
-              of SOL). These fees are paid directly to the Solana validator
-              network and are <strong>not</strong> revenue for TwinPixelsLab.
-              The fee amount is determined by current network conditions and is
-              displayed by your wallet app before you confirm a transaction.
-            </p>
-
-            <h2>9. Risk Disclosure</h2>
-            <p>You acknowledge and accept the following inherent risks:</p>
-            <ul>
-              <li>
-                <strong>Price Volatility.</strong> The value of SOL can
-                fluctuate significantly. We are not responsible for any
-                financial loss resulting from changes in the market value of
-                SOL.
-              </li>
-              <li>
-                <strong>Transaction Failure.</strong> Network congestion or
-                insufficient SOL balance may cause a transaction to fail. We are
-                not liable for failed transactions.
-              </li>
-              <li>
-                <strong>Smart Contract Risk.</strong> While we have taken care in
-                developing our on-chain program, smart contracts may contain
-                unforeseen bugs or vulnerabilities. Use of on-chain features is
-                at your own risk.
-              </li>
-              <li>
-                <strong>Wallet Loss.</strong> If you lose access to your Solana
-                wallet, your unlocked in-game content and your account progress
-                tied to that wallet may be permanently inaccessible. We cannot
-                recover content or accounts tied to a lost wallet.
-              </li>
+              <li>they have <strong>no monetary value</strong> and <strong>cannot be exchanged for money</strong>, cryptocurrency or anything of value outside the Game;</li>
+              <li>they <strong>cannot</strong> be sold, transferred to another player or account, or traded on any marketplace;</li>
+              <li>they are recorded in our game backend, against your game account;</li>
+              <li>spending made while offline is confirmed when the Game next reaches our servers; a purchase our server cannot confirm (for example, because the balance it relied on was not actually available) may be reversed;</li>
+              <li>we may correct balances and Virtual Items that result from errors, bugs, a credit for a payment we did not actually receive, or a breach of these Terms (Section 11);</li>
+              <li>we may change, rebalance or discontinue Virtual Items, prices and features as the Game evolves.</li>
             </ul>
 
-            <h2>10. Fair Play &amp; Anti-Cheat</h2>
+            <h2>8. Buying Hard Currency (SOL / SKR)</h2>
+            <h3>8.1 How Purchases Work</h3>
             <p>
-              OchiJump's leaderboards are meant to be fair. To protect the
-              integrity of the Game and the experience of honest players, we
-              operate anti-cheat measures and reserve the right,
-              <strong>at our sole discretion and without prior notice</strong>,
-              to take any of the following actions if we detect or reasonably
-              suspect cheating, exploiting, score manipulation, use of bots or
-              automation, tampering with or modifying the game client, or any
-              other unauthorized manipulation of the Game or our systems:
+              Where available, you can buy hard currency with <strong>SOL</strong> or <strong>SKR</strong> from your Solana wallet. When you tap a bundle, our server issues a signed price quote; your wallet app then shows you the exact transfer before you approve it. The amount you pay never exceeds the amount the Game showed you: if the price has risen by more than a small margin, the Game asks you to confirm the new amount instead. The payment is made <strong>directly from your wallet</strong> to the OchiJump treasury through our on-chain payment program (Program ID: <code>ochiMq7xDD9QHa8bgcjfQf6qf4zCRsamTUKicFmsurX</code> on Solana Mainnet), and is settled by the Solana network, not by us. Once the payment is confirmed, the hard currency is credited to your game account.
+            </p>
+            <p>
+              Hard-currency purchases are not available in every version of the Game.
+            </p>
+            <h3>8.2 All Sales Are Final</h3>
+            <p>
+              <strong>All purchases are final and non-refundable</strong>, except where applicable law requires otherwise. Because payments are settled on the Solana blockchain, they are <strong>technically irreversible</strong>; TwinPixelsLab has no ability to reverse a confirmed transaction or return funds.
+            </p>
+            <h3>8.3 Pending and Failed Purchases</h3>
+            <p>
+              If a transaction is rejected or never sent (for example, insufficient SOL or SKR, you declined it in your wallet, or network congestion), nothing is charged and no hard currency is credited. If you approved a payment, the Game keeps checking it, including on the next launch, and credits it once it is confirmed. If a payment appears confirmed on-chain but the hard currency did not arrive, contact us with the transaction signature and we will investigate.
+            </p>
+            <h3>8.4 Purchases Made Before 2.0.0</h3>
+            <p>
+              Earlier versions of the Game sold content through our former on-chain store program. That program is closed. Content purchased through it is unlocked for the account of the purchasing wallet when that wallet signs in.
+            </p>
+
+            <h2>9. Network Fees and Risks</h2>
+            <p>
+              Each Solana transaction requires a small <strong>network fee</strong>, paid to the Solana network and shown by your wallet before you approve; it is not revenue for TwinPixelsLab.
+            </p>
+            <p>
+              You acknowledge and accept the following risks:
             </p>
             <ul>
-              <li>
-                <strong>Shadow ban</strong> — hide or exclude your scores from
-                the public leaderboards while you may continue to play (your
-                submitted scores simply will not appear publicly);
-              </li>
-              <li>
-                <strong>Reset your progress</strong> or remove illegitimately
-                obtained progress, scores, or unlocked content from our cloud
-                systems;
-              </li>
-              <li>
-                <strong>Suspend or terminate your account</strong> and your
-                access to the online features of the Game.
-              </li>
+              <li><strong>Price Volatility.</strong> The value of SOL and SKR can fluctuate significantly. We are not responsible for losses resulting from changes in their market value.</li>
+              <li><strong>Transaction Failure.</strong> Network congestion or insufficient balance may cause a transaction to fail. We are not liable for failed transactions.</li>
+              <li><strong>Smart Contract Risk.</strong> While we have taken care in developing our on-chain payment program, smart contracts may contain unforeseen bugs or vulnerabilities. Use of on-chain features is at your own risk.</li>
+              <li><strong>Wallet Loss.</strong> If you lose access to your wallet, you may lose access to the account linked to it. We cannot recover accounts tied to a lost wallet.</li>
             </ul>
+
+            <h2>10. Data and Usage Analytics</h2>
             <p>
-              These enforcement actions apply to
-              <strong>cloud-side data and services</strong> that we control —
-              leaderboards, cloud-saved progress, and account access. They do
-              <strong>not</strong>, and cannot, alter on-chain records: any
-              content you legitimately purchased on the Solana blockchain
-              remains owned by your wallet, as we have no ability to reverse or
-              modify on-chain transactions (see Sections 6 and 7).
-            </p>
-            <p>
-              We are not obligated to disclose our anti-cheat methods, and a
-              decision to take action under this Section is not a waiver of any
-              other rights or remedies available to us.
+              The Game records gameplay and usage data, as described in our <a href="#privacy">Privacy Policy</a>, to run the Game, keep it fair and secure, and improve it. You can switch off usage analytics at any time in <strong>Settings → Privacy → Share usage data</strong>; gameplay records, economy records and purchases needed to run the Game are not affected by that setting.
             </p>
 
-            <h2>11. Intellectual Property</h2>
+            <h2>11. Fair Play &amp; Anti-Cheat</h2>
             <p>
-              All content within OchiJump — including graphics, audio, game
-              design, code, and the OchiJump name and logo — is the exclusive
-              intellectual property of TwinPixelsLab and is protected by
-              applicable copyright and trademark laws.
+              OchiJump's leaderboards and economy are meant to be fair. To protect the Game and the experience of honest players, we operate anti-cheat measures and reserve the right, <strong>at our sole discretion and without prior notice</strong>, to take any of the following actions if we detect or reasonably suspect cheating, exploiting, score or economy manipulation, use of bots or automation, tampering with or modifying the game client, or any other unauthorized manipulation of the Game or our systems:
+            </p>
+            <ul>
+              <li><strong>Shadow ban</strong> — hide or exclude your scores from the public leaderboards while you may continue to play;</li>
+              <li><strong>Reset or correct</strong> your progress, scores, balances, or Virtual Items, including removing currency or content obtained illegitimately;</li>
+              <li><strong>Suspend or terminate your account</strong> and your access to the online features of the Game.</li>
+            </ul>
+            <p>
+              These actions apply to data and services we control. They do <strong>not</strong>, and cannot, alter on-chain records: a confirmed blockchain transaction remains on the blockchain (see Sections 6 and 8).
             </p>
             <p>
-              You are granted a limited, non-exclusive, non-transferable,
-              revocable license to use the Game for personal, non-commercial
-              purposes only. You may not:
+              We are not obligated to disclose our anti-cheat methods, and a decision to take action under this Section is not a waiver of any other rights or remedies available to us.
+            </p>
+
+            <h2>12. Intellectual Property</h2>
+            <p>
+              All content within OchiJump — including graphics, audio, game design, code, and the OchiJump name and logo — is the exclusive intellectual property of TwinPixelsLab and is protected by applicable copyright and trademark laws.
+            </p>
+            <p>
+              You are granted a limited, non-exclusive, non-transferable, revocable license to use the Game for personal, non-commercial purposes only. You may not:
             </p>
             <ul>
               <li>Copy, modify, or distribute any part of the Game.</li>
-              <li>
-                Reverse-engineer, decompile, or disassemble the Game's code.
-              </li>
-              <li>
-                Use the Game's assets for any commercial purpose without our
-                written consent.
-              </li>
+              <li>Reverse-engineer, decompile, or disassemble the Game's code.</li>
+              <li>Use the Game's assets for any commercial purpose without our written consent.</li>
             </ul>
 
-            <h2>12. Prohibited Conduct</h2>
-            <p>You agree not to:</p>
+            <h2>13. Prohibited Conduct</h2>
+            <p>
+              You agree not to:
+            </p>
             <ul>
-              <li>
-                Use cheats, exploits, automation software, bots, or any
-                unauthorized third-party tools, or otherwise manipulate
-                gameplay, scores, or leaderboards.
-              </li>
-              <li>
-                Modify, tamper with, reverse-engineer, or interfere with the
-                game client or its communication with our servers.
-              </li>
-              <li>
-                Attempt to disrupt or gain unauthorized access to the Game, our
-                backend, our smart contracts, or related systems.
-              </li>
-              <li>
-                Use the Game to engage in any fraudulent, deceptive, or illegal
-                activity.
-              </li>
-              <li>
-                Impersonate TwinPixelsLab or any other person or entity.
-              </li>
+              <li>Use cheats, exploits, automation software, bots, or any unauthorized third-party tools, or otherwise manipulate gameplay, scores, leaderboards, or the in-game economy.</li>
+              <li>Modify, tamper with, reverse-engineer, or interfere with the game client or its communication with our servers.</li>
+              <li>Attempt to disrupt or gain unauthorized access to the Game, our backend, our smart contracts, or related systems.</li>
+              <li>Sell, trade, or transfer accounts or Virtual Items, or offer to do so.</li>
+              <li>Use the Game to engage in any fraudulent, deceptive, or illegal activity.</li>
+              <li>Impersonate TwinPixelsLab or any other person or entity.</li>
             </ul>
             <p>
-              Violations of this Section may result in the enforcement actions
-              described in Section 10.
+              Violations of this Section may result in the enforcement actions described in Section 11.
             </p>
 
-            <h2>13. Disclaimer of Warranties</h2>
+            <h2>14. Disclaimer of Warranties</h2>
             <p class="caps">
-              THE GAME IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES
-              OF ANY KIND, EXPRESS OR IMPLIED. TO THE MAXIMUM EXTENT PERMITTED
-              BY APPLICABLE LAW, TWINPIXELSLAB DISCLAIMS ALL WARRANTIES,
-              INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF
-              MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND
-              NON-INFRINGEMENT.
+              THE GAME IS PROVIDED "AS IS" AND "AS AVAILABLE" WITHOUT WARRANTIES OF ANY KIND, EXPRESS OR IMPLIED. TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, TWINPIXELSLAB DISCLAIMS ALL WARRANTIES, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
             </p>
             <p class="caps">
-              We do not warrant that the Game or its online features will be
-              uninterrupted, error-free, secure, or free of harmful components,
-              or that cloud-saved data or leaderboards will always be available
-              or free from loss.
+              We do not warrant that the Game or its online features will be uninterrupted, error-free, secure, or free of harmful components, or that cloud-saved data, balances, or leaderboards will always be available or free from loss.
             </p>
 
-            <h2>14. Limitation of Liability</h2>
+            <h2>15. Limitation of Liability</h2>
             <p class="caps">
-              TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT
-              SHALL TWINPIXELSLAB BE LIABLE FOR ANY INDIRECT, INCIDENTAL,
-              SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES ARISING OUT OF OR
-              RELATED TO YOUR USE OF THE GAME, INCLUDING ANY LOSS OF PROGRESS,
-              SCORES, OR ACCOUNT DATA.
+              TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT SHALL TWINPIXELSLAB BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES ARISING OUT OF OR RELATED TO YOUR USE OF THE GAME, INCLUDING ANY LOSS OF PROGRESS, SCORES, VIRTUAL ITEMS, OR ACCOUNT DATA.
             </p>
             <p class="caps">
-              OUR TOTAL AGGREGATE LIABILITY FOR ANY CLAIM ARISING OUT OF THESE
-              TERMS SHALL NOT EXCEED THE TOTAL AMOUNT YOU PAID FOR IN-GAME
-              PURCHASES IN THE 90 DAYS PRECEDING THE CLAIM.
+              OUR TOTAL AGGREGATE LIABILITY FOR ANY CLAIM ARISING OUT OF THESE TERMS SHALL NOT EXCEED THE TOTAL AMOUNT YOU PAID FOR IN-GAME PURCHASES IN THE <strong>90 DAYS</strong> PRECEDING THE CLAIM.
             </p>
 
-            <h2>15. Governing Law</h2>
+            <h2>16. Governing Law</h2>
             <p>
-              These Terms are governed by and construed in accordance with the
-              laws of <strong>Ukraine</strong>, without regard to its conflict
-              of law provisions. Any disputes arising under these Terms shall be
-              subject to the exclusive jurisdiction of the courts located in
-              Ukraine.
+              These Terms are governed by and construed in accordance with the laws of <strong>Ukraine</strong>, without regard to its conflict of law provisions. Any disputes arising under these Terms shall be subject to the exclusive jurisdiction of the courts located in Ukraine.
             </p>
 
-            <h2>16. Changes to These Terms</h2>
+            <h2>17. Changes to These Terms</h2>
             <p>
-              We may update these Terms from time to time. When we do, we will
-              update the "Last Updated" date at the top of this page and publish
-              the revised Terms on our website and/or notify you through an
-              in-app notice or an app store update description.
+              We may update these Terms from time to time. When we do, we will update the "Last Updated" date at the top of this page and publish the revised Terms on our website and/or notify you through an in-app notice or an app store update description.
             </p>
             <p>
-              Your continued use of the Game after changes are posted
-              constitutes your acceptance of the revised Terms.
+              Your continued use of the Game after changes are posted constitutes your acceptance of the revised Terms.
             </p>
 
-            <h2>17. Contact</h2>
+            <h2>18. Contact</h2>
             <p>
               If you have any questions about these Terms, please contact us:
             </p>
             <p>
               <strong>TwinPixelsLab</strong><br />
-              Email:
-              <a href="mailto:contact@twinpixelslab.com"
-                >contact@twinpixelslab.com</a
-              ><br />
-              Website:
-              <a href="https://twinpixelslab.com" target="_blank" rel="noopener"
-                >https://twinpixelslab.com</a
-              >
+              Email: <a href="mailto:contact@twinpixelslab.com">contact@twinpixelslab.com</a><br />
+              Website: <a href="https://twinpixelslab.com" target="_blank" rel="noopener">https://twinpixelslab.com</a>
             </p>
           </div>
         </div>
@@ -2487,7 +2325,7 @@
           <div class="modal-hdr-info">
             <span class="modal-hdr-title" id="pp-hdrtitle">PRIVACY POLICY</span>
             <span class="modal-hdr-date"
-              >LAST UPDATED: JUNE 24, 2026 &bull; EFFECTIVE: JUNE 24, 2026</span
+              >LAST UPDATED: OCTOBER 21, 2026 &bull; EFFECTIVE: OCTOBER 16, 2026</span
             >
           </div>
           <button class="modal-close-btn" onclick="closeModal('modal-pp')">
@@ -2498,500 +2336,280 @@
           <div class="legal">
             <blockquote>
               <p>
-                <strong>The short version:</strong> OchiJump now uses secure
-                cloud services to save your progress across devices and to run
-                global Daily Run leaderboards, and we collect
-                <strong>anonymous</strong> gameplay telemetry to make the game
-                better. We still <strong>never</strong> collect your real name,
-                email address, physical address, or location — and we
-                <strong>never</strong> have access to your private keys or the
-                ability to move your funds. Raw telemetry is permanently deleted
-                after 30 days.
+                <strong>The short version:</strong> OchiJump saves your game to our own cloud backend, runs public leaderboards, keeps a ledger of the in-game currency you earn and spend, and records how the game is played so we can make it better. That data is tied to a random install ID and to your game account — not to your name. We <strong>never</strong> collect your real name, email address, phone number, physical address or location, and we <strong>never</strong> have access to your private keys or the ability to move your funds. You can switch usage analytics off at any time in <strong>Settings → Privacy → Share usage data</strong>. Raw gameplay and usage records are permanently deleted after <strong>180 days</strong>.
               </p>
             </blockquote>
 
             <h2>1. Who We Are</h2>
             <p>
-              This Privacy Policy describes how
-              <strong>TwinPixelsLab</strong> ("we," "us," or "our") handles
-              information in connection with <strong>OchiJump</strong>, a mobile
-              platformer game available for Solana Mobile-compatible devices.
+              This Privacy Policy describes how <strong>TwinPixelsLab</strong> ("we," "us," or "our") handles information in connection with <strong>OchiJump</strong>, a mobile platformer game (the "Game").
             </p>
             <p>
-              OchiJump began as a fully offline game. As it has grown, we added
-              optional cloud features — cross-device progress saving and global
-              leaderboards — and gameplay telemetry that helps us find bugs and
-              balance the game. This policy reflects that current, hybrid
-              reality and replaces any earlier version that described OchiJump as
-              having no servers.
+              This version describes OchiJump 2.0.0 and later: game accounts that work without a wallet, in-game currencies, the hard-currency purchase gateway, and usage analytics. It replaces every earlier version.
             </p>
 
             <h2>2. Data We Collect</h2>
             <p>
-              We've kept data collection deliberately minimal and tied to
-              gameplay. Here is everything we collect through our own cloud
-              backend (hosted on Supabase — see Section 5):
+              Everything below flows only to our own backend, hosted on Supabase (see Section 11). We do not use third-party analytics or advertising SDKs.
             </p>
-
-            <h3>2.1 Account &amp; Wallet Data</h3>
+            <h3>2.1 Your Game Account</h3>
             <ul>
-              <li>
-                Your Solana wallet's <strong>public address</strong> (Base58
-                public key) — used to identify your account so your progress and
-                leaderboard standing follow you.
-              </li>
-              <li>
-                Your Solana <strong>domain name</strong> (<code>.sol</code> /
-                <code>.skr</code>), if you have one — used as your public
-                display name on leaderboards instead of a raw address.
-              </li>
-              <li>
-                An internal account identifier derived from your public key (a
-                technical artifact only — not a real email or contact address).
-              </li>
+              <li><strong>Guest account.</strong> The first time the Game has something to save for you (a finished run, a purchase, a redeemed code), it creates a game account on our server with a random internal identifier. No wallet, email or sign-in is needed.</li>
+              <li><strong>Linked wallet (optional).</strong> If you connect a Solana wallet, we store its <strong>public address</strong> (Base58 public key) and, if you have one, your <strong><code>.sol</code> / <code>.skr</code> domain name</strong>, so your account can be restored on another device. A device can hold several accounts and switch between them.</li>
+              <li><strong>Sessions.</strong> We issue session tokens that keep the Game signed in to your account, and keep a technical record of when they were issued and last used (including the app's user-agent string) for security.</li>
             </ul>
-
-            <h3>2.2 Gameplay Telemetry</h3>
+            <h3>2.2 Install Identifier</h3>
             <p>
-              Telemetry can be sent <strong>anonymously</strong> (tied only to a
-              randomly generated device ID, not to your wallet) or, once you
-              connect a wallet, associated with your account. It includes:
+              A random UUID the Game generates on first launch (the "install ID") groups the records of one installation. It is <strong>not</strong> your device's hardware identifier, advertising ID or IMEI, and it changes if you reinstall the Game.
+            </p>
+            <h3>2.3 Gameplay Records (Runs)</h3>
+            <p>
+              For each run: the location and mode, the run's random seed, its duration, how it ended, the height reached, jumps, enemies defeated, items collected, the skin played, revives taken, and the app version and platform (e.g. Android). These power the leaderboards and the in-game rewards for a run.
+            </p>
+            <h3>2.4 Usage Analytics</h3>
+            <p>
+              To understand how the Game is played and improve it, the Game records events such as:
             </p>
             <ul>
-              <li>
-                <strong>Run statistics</strong> — e.g., height reached, enemies
-                stomped, shards collected, jumps, run duration, and how a run
-                ended.
-              </li>
-              <li>
-                <strong>App version and platform</strong> — e.g., the build
-                number and whether you're on Android or iOS — so we can
-                reproduce and fix bugs on the right devices.
-              </li>
-              <li>
-                <strong>Anonymous device identifier</strong> — a random UUID our
-                app generates on first launch to group your telemetry. This is
-                <strong>not</strong> your device's hardware identifier or IMEI.
-              </li>
+              <li>when the app is opened and sent to the background, and how long a session lasts;</li>
+              <li>which screens and tabs you visit;</li>
+              <li>your interactions with the shop and purchase screens — which items you looked at, whether you opened a purchase, and whether it succeeded, was cancelled or was refused (for example for insufficient in-game currency);</li>
+              <li>the hero, skins, weapon skins, implants and other equipment you choose, and changes to them;</li>
+              <li>in-run statistics such as which weapons, upgrades and implants you used and how often, which enemies you defeated, revives offered and taken, and the buttons you chose at the end of a run;</li>
+              <li>your progress: levels reached, rewards claimed, achievements completed;</li>
+              <li>your interactions with the Ochi-Pet pocket pet and its mini-games;</li>
+              <li>changes to your settings, tutorial steps shown, sign-in outcomes, and error reports when the Game crashes;</li>
+              <li>how smoothly a run played: how many frames were drawn and how many were late.</li>
             </ul>
-
-            <h3>2.3 Game Progress (Cloud Save)</h3>
             <p>
-              If you connect your wallet, your progress — such as total
-              experience, unlocked locations, unlocked skins, and configuration
-              — is saved to our backend so you can restore it on a new device.
+              Each event is recorded with the time it happened, a random session identifier, your install ID, your game account (if one exists), and the app version and platform. <strong>Usage analytics never include your wallet address.</strong> You can switch them off (Section 4).
             </p>
-
-            <h3>2.4 Leaderboard Entries</h3>
             <p>
-              When you play a <strong>Daily Run</strong>, your best score for
-              the day (height and tiebreak stats) is published to a
-              <strong>public</strong> leaderboard alongside your wallet address
-              or domain name. This is the intended, public-by-design part of the
-              feature.
+              Once per app launch the Game also records the <strong>kind</strong> of device it runs on: its make and model (for example "Samsung SM-S911B"), the operating-system version, the device's language and region setting (for example "uk-UA" — a setting, not your location) and the app store that installed the Game. This tells us which phones a crash or a slow frame happens on. It describes the type of device, not your particular device: it is not a hardware identifier and cannot single you out.
             </p>
-
-            <h3>2.5 Standard Request Metadata</h3>
             <p>
-              Like any internet service, our infrastructure and providers may
-              log standard technical metadata such as your
-              <strong>IP address</strong> and request timestamps. We use this
-              only for security, abuse prevention, and rate limiting — not to
-              build a profile of you.
+              We may collect usage analytics from only a random share of installations, to keep the amount of data small. Whether an installation is in that share is decided by its install ID, so it is either included or not; error reports are always sent.
+            </p>
+            <h3>2.5 Economy Records</h3>
+            <p>
+              The Game keeps a ledger of your in-game economy, synchronised with our server: soft and hard currency earned and spent (and on what — for example a shop item, a revive or a re-roll), items granted or used up, promo codes redeemed, and the resulting balances and owned items. This record is what lets your purchases and balances follow your account and lets us detect and correct errors and fraud.
+            </p>
+            <h3>2.6 Hard-Currency Purchases</h3>
+            <p>
+              When you buy hard currency with SOL or SKR, we create a signed price quote and record it together with your <strong>wallet address</strong>, the bundle, the currency and amount, its approximate US-dollar value, and its status. When the payment lands on the blockchain we record its <strong>transaction signature</strong>, slot and time, and credit the hard currency to your account.
+            </p>
+            <h3>2.7 Leaderboards</h3>
+            <p>
+              Your best height is published on <strong>public</strong> leaderboards under a display name: your <code>.sol</code> / <code>.skr</code> domain or a shortened wallet address if your account has a wallet, otherwise a randomly generated name. Daily Run results are published the same way.
+            </p>
+            <h3>2.8 Cloud Save</h3>
+            <p>
+              Your progress — experience, unlocked locations and skins, and related configuration — is saved to your account on our server so it can be restored on a new device.
+            </p>
+            <h3>2.9 Standard Request Metadata</h3>
+            <p>
+              Like any internet service, our infrastructure and providers may log technical metadata such as your <strong>IP address</strong> and request timestamps. We use it only for security, abuse prevention and rate limiting — not to build a profile of you.
             </p>
 
             <h2>3. Data We Do NOT Collect</h2>
             <p>
-              Even with cloud features, we still do <strong>not</strong> collect,
-              store, or process:
+              We do <strong>not</strong> collect, store or process:
             </p>
             <ul>
-              <li>
-                Your real name or username (your public key or
-                <code>.sol</code>/<code>.skr</code> domain is your only identity)
-              </li>
-              <li>Your email address</li>
-              <li>Your phone number or physical address</li>
-              <li>Your geographic location or GPS data</li>
-              <li>Your device's hardware identifiers or IMEI</li>
-              <li>Biometric data</li>
-              <li>
-                Financial credentials, payment card information, or bank details
-              </li>
-              <li>Demographic information</li>
+              <li>your real name, email address, phone number or physical address;</li>
+              <li>your geographic location or GPS data;</li>
+              <li>your device's hardware identifiers, advertising ID or IMEI;</li>
+              <li>contacts, photos, microphone or camera data;</li>
+              <li>biometric data;</li>
+              <li>payment-card or bank details (real-money payments are made from your own wallet; see Section 7).</li>
             </ul>
             <p>
-              OchiJump does <strong>not</strong> embed third-party
-              behavioral-analytics SDKs (such as Firebase Analytics, Mixpanel,
-              or Amplitude) and does <strong>not</strong> use third-party
-              crash-reporting services (such as Sentry or Bugsnag). The telemetry
-              described above flows only to our own backend.
+              OchiJump does <strong>not</strong> embed third-party behavioural-analytics or advertising SDKs (such as Firebase Analytics, Mixpanel or Amplitude) and does <strong>not</strong> use third-party crash-reporting services (such as Sentry or Bugsnag). All telemetry and analytics flow only to our own backend.
             </p>
 
-            <h2>4. Wallet Data &amp; Your Keys</h2>
-            <p>This section is important for Web3 users.</p>
-            <ul>
-              <li>
-                We store your wallet's <strong>public address</strong> and,
-                optionally, your <strong><code>.sol</code> / <code>.skr</code>
-                domain name</strong>. Both are public information by their
-                nature.
-              </li>
-              <li>
-                To sign in, your wallet signs a one-time "Sign In With Solana"
-                message that proves you control the wallet. We verify that
-                signature; nothing is moved or spent.
-              </li>
-              <li>
-                <strong
-                  >We never receive, store, or have access to your private keys
-                  or seed phrase</strong
-                >, and we have <strong>no ability to initiate, approve, or
-                reverse any transaction</strong> on your behalf. All transaction
-                signing happens inside your own wallet app via the Solana Mobile
-                Wallet Adapter (MWA) protocol.
-              </li>
-            </ul>
+            <h2>4. Your Analytics Choice</h2>
             <p>
-              In short: your keys and your funds never touch our systems.
+              <strong>Settings → Privacy → Share usage data</strong> controls the usage analytics described in Section 2.4. It is <strong>on</strong> by default.
             </p>
-
-            <h2>5. Cloud Services &amp; Where Your Data Lives</h2>
             <p>
-              OchiJump's cloud features are built on <strong>Supabase</strong>,
-              a managed cloud platform (PostgreSQL database + serverless
-              functions), which we use to:
+              When you switch it <strong>off</strong>:
             </p>
             <ul>
-              <li>Authenticate your wallet sign-in,</li>
-              <li>Save and restore your game progress,</li>
-              <li>Record gameplay telemetry, and</li>
-              <li>Power the Daily Run leaderboards.</li>
+              <li>the Game stops sending usage analytics from that device, effective immediately;</li>
+              <li>one event recording that you switched it off is sent, so we know how many players opt out;</li>
+              <li>error reports (crash information) are still sent, because we need them to keep the Game working;</li>
+              <li>gameplay records (Section 2.3), economy records (2.5), purchases (2.6), leaderboards (2.7) and cloud save (2.8) are <strong>not</strong> affected — they are part of how the Game works, not analytics.</li>
             </ul>
             <p>
-              All communication between the Game and our backend uses encrypted
-              HTTPS. Access to the underlying database is restricted; clients
-              can only reach it through our controlled server-side functions,
-              never directly.
+              Switching it off does not delete what was sent before; to request deletion, see Section 10. The setting belongs to the device and applies to every account used on it.
             </p>
 
-            <h2>6. Telemetry, Analytics &amp; Data Retention</h2>
-            <p>
-              We use the telemetry in Section 2.2 strictly to
-              <strong>improve OchiJump</strong> — fixing crashes, balancing
-              difficulty, and understanding how features perform across app
-              versions and platforms. We do not sell it.
-            </p>
-            <p><strong>Retention:</strong></p>
+            <h2>5. How We Use Data</h2>
             <ul>
-              <li>
-                <strong>Raw telemetry</strong> (individual gameplay events and
-                run-session records) is <strong>permanently deleted 30
-                days</strong> after it is created, by an automated scheduled
-                job. We keep only short-lived, recent data.
-              </li>
-              <li>
-                <strong>Leaderboard standings</strong> and
-                <strong>cloud-saved progress</strong> persist for as long as you
-                keep an account, because they are features you rely on — your
-                saved game and your scores. You can request deletion (see
-                Section 9).
-              </li>
-              <li>
-                <strong>Local device data</strong> is retained until you
-                uninstall the app.
-              </li>
-              <li>
-                <strong>On-chain data</strong> is permanent and outside our
-                control (see Section 8).
-              </li>
+              <li>to run the Game: your account, cloud save, purchases, balances, rewards and leaderboards;</li>
+              <li>to keep it fair and secure: detecting cheating, abuse and fraud, and correcting errors in the economy;</li>
+              <li>to improve it: understanding which features are used, where players get stuck or leave, how long sessions last and how many players return, and balancing difficulty and prices;</li>
+              <li>to fix bugs: crash reports and app-version/platform information.</li>
+            </ul>
+            <p>
+              We do <strong>not</strong> sell your data, do not use it for advertising, and do not share it with third parties except the service providers in Section 11, which process it on our behalf.
+            </p>
+
+            <h2>6. Data Retention</h2>
+            <ul>
+              <li><strong>Raw gameplay and usage records</strong> (individual runs and analytics events) are <strong>permanently deleted 180 days</strong> after they are created, by an automated scheduled job.</li>
+              <li><strong>Economy records and purchase records</strong> (Sections 2.5–2.6) are kept for as long as your account exists, because they are your balances and purchases, and because we need them to resolve disputes and detect fraud.</li>
+              <li><strong>Leaderboard standings and cloud-saved progress</strong> are kept for as long as your account exists.</li>
+              <li><strong>Idle guest accounts</strong> that hold nothing of value (no currency, no items, no purchases, no linked wallet) may be deleted after a period of inactivity; their past gameplay and usage records then remain only under the install ID, without an account.</li>
+              <li><strong>Local device data</strong> remains until you uninstall the Game.</li>
+              <li><strong>On-chain data</strong> is permanent and outside our control (Section 8).</li>
             </ul>
 
-            <h2>7. Data Stored Locally on Your Device</h2>
-            <p>
-              OchiJump stores a small amount of data in your device's local
-              storage using the <code>react-native-mmkv</code> library,
-              including:
-            </p>
-            <table>
-              <thead>
-                <tr>
-                  <th>What it is</th>
-                  <th>Why</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Your Solana wallet's Base58 public key</td>
-                  <td>
-                    So you don't have to reconnect your wallet every time you
-                    launch the app
-                  </td>
-                </tr>
-                <tr>
-                  <td>Mobile Wallet Adapter session token</td>
-                  <td>
-                    Maintains your wallet authorization session without
-                    re-prompting
-                  </td>
-                </tr>
-                <tr>
-                  <td>A backend session token</td>
-                  <td>
-                    Keeps you signed in to your cloud account so progress syncs
-                    without re-authenticating
-                  </td>
-                </tr>
-                <tr>
-                  <td>Game progress, high scores &amp; unlocked content</td>
-                  <td>
-                    Your local save data (also mirrored to the cloud when a
-                    wallet is connected)
-                  </td>
-                </tr>
-                <tr>
-                  <td>A locally generated anonymous device ID</td>
-                  <td>Groups your telemetry (see Section 2.2)</td>
-                </tr>
-              </tbody>
-            </table>
-            <p>
-              <strong
-                >All locally stored data is deleted when you uninstall
-                OchiJump.</strong
-              >
-            </p>
+            <h2>7. Wallets, Payments &amp; Your Keys</h2>
+            <ul>
+              <li>We store your wallet's <strong>public address</strong> and, optionally, its <strong><code>.sol</code> / <code>.skr</code> domain name</strong>. Both are public by nature.</li>
+              <li>To sign in, your wallet signs a one-time "Sign In With Solana" message proving you control it. Nothing is moved or spent.</li>
+              <li>To buy hard currency, the Game asks our server for a price quote, and your wallet app shows you the exact transfer before you approve it. The transfer goes from your wallet to our treasury through our on-chain payment program; we only see the resulting public transaction.</li>
+              <li><strong>We never receive, store or have access to your private keys or seed phrase</strong>, and we have <strong>no ability to initiate, approve or reverse any transaction</strong> on your behalf. All signing happens inside your own wallet app via the Solana Mobile Wallet Adapter (MWA) protocol.</li>
+            </ul>
 
             <h2>8. Blockchain &amp; Public Data</h2>
             <p>
-              When you make an in-game purchase, a transaction is submitted to
-              the <strong>Solana blockchain</strong>. This transaction is
-              permanent and publicly visible.
+              A hard-currency purchase is a transaction on the <strong>Solana blockchain</strong>, which is permanent and publicly visible. It shows:
             </p>
-            <h3>8.1 What Goes On-Chain</h3>
             <ul>
-              <li>
-                Your <strong>wallet's public address</strong> (e.g.,
-                <code>7xKX...3fQz</code>)
-              </li>
-              <li>
-                The <strong>item(s) purchased</strong> (encoded as bits in your
-                <code>PlayerInventory</code> account)
-              </li>
-              <li>
-                The <strong>SOL amount transferred</strong> to the OchiJump
-                treasury wallet
-              </li>
-              <li>The <strong>timestamp</strong> of the transaction</li>
+              <li>your <strong>wallet's public address</strong>;</li>
+              <li>the <strong>amount of SOL or SKR</strong> transferred to the OchiJump treasury;</li>
+              <li>a reference to the price quote, and the <strong>time</strong> of the transaction;</li>
+              <li>that it was processed by the OchiJump payment program (Program ID: <code>ochiMq7xDD9QHa8bgcjfQf6qf4zCRsamTUKicFmsurX</code>).</li>
             </ul>
-
-            <h3>8.2 Your PlayerInventory PDA Is Public</h3>
             <p>
-              Your in-game item inventory is stored in a
-              <strong>Program Derived Address (PDA)</strong> account managed by
-              the OchiJump smart contract (Program ID:
-              <code>DmxfvDvSkm6XEnt7VXMGjpTpt9vkFu7j3vQNbHg8Ds8w</code>). This
-              account is tied to your wallet's public key and is
-              <strong>readable by anyone</strong> who queries the Solana
-              blockchain.
+              The hard currency you receive and the items you buy with it are <strong>records in our game backend</strong>, not tokens or NFTs on the blockchain.
+            </p>
+            <p>
+              Purchases made with earlier versions of the Game, through our former on-chain store program, were recorded on-chain against the purchasing wallet and remain publicly readable there; the content they unlocked is honoured in your account.
+            </p>
+            <p>
+              Records on a public blockchain are <strong>permanent and immutable</strong>. TwinPixelsLab cannot delete or modify on-chain transaction history, and <strong>the right to erasure does not apply to on-chain data</strong>. Anyone can view Solana transactions using public explorers such as <a href="https://explorer.solana.com" target="_blank" rel="noopener">Solana Explorer</a> or <a href="https://solscan.io" target="_blank" rel="noopener">Solscan</a>.
             </p>
 
-            <h3>8.3 These Are NOT NFTs or Tokens</h3>
+            <h2>9. Data Stored Locally on Your Device</h2>
             <p>
-              Your purchased items are stored as
-              <strong>technical state records</strong> in the PDA — they are
-              <strong>not</strong> NFT tokens, cNFTs, or SPL tokens. They will
-              not appear in your wallet's token or NFT gallery, and they are not
-              tradable or transferable. The underlying data is still publicly
-              readable on-chain.
+              OchiJump stores data in your device's local storage (<code>react-native-mmkv</code>), including:
+            </p>
+            <table>
+              <thead>
+                <tr><th>What it is</th><th>Why</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>The install ID</td><td>Groups your records (Section 2.2)</td></tr>
+                <tr><td>Your game accounts' profiles and session tokens</td><td>Keep you signed in; let the device switch accounts</td></tr>
+                <tr><td>Your wallet's public address and the wallet-adapter session token</td><td>So you don't have to reconnect your wallet every launch</td></tr>
+                <tr><td>Game progress, scores, unlocked content, equipment, Ochi-Pet state</td><td>Your local save (also synced to your account)</td></tr>
+                <tr><td>The economy journal</td><td>Purchases and balance changes made offline, until they reach the server</td></tr>
+                <tr><td>Unsent gameplay and analytics records</td><td>Sent when the network is available</td></tr>
+                <tr><td>A saved in-progress run</td><td>So an interrupted run is not lost</td></tr>
+                <tr><td>The install date, launch count and last-background time</td><td>To measure sessions (Section 2.4)</td></tr>
+                <tr><td>Your settings, including "Share usage data"</td><td>Your preferences</td></tr>
+              </tbody>
+            </table>
+            <p>
+              Android's automatic backup is disabled for OchiJump. <strong>All locally stored data is deleted when you uninstall the Game.</strong>
             </p>
 
-            <h3>8.4 We Cannot Delete On-Chain Data</h3>
+            <h2>10. Your Rights and Choices</h2>
+            <h3>Usage Analytics</h3>
             <p>
-              Records on a public blockchain are
-              <strong>permanent and immutable</strong>. TwinPixelsLab has no
-              ability to delete or modify your on-chain transaction history or
-              inventory PDA.
-              <strong
-                >The right to erasure does not apply to on-chain data.</strong
-              >
-              Anyone can view Solana transactions using public explorers such as
-              <a
-                href="https://explorer.solana.com"
-                target="_blank"
-                rel="noopener"
-                >Solana Explorer</a
-              >
-              or
-              <a href="https://solscan.io" target="_blank" rel="noopener"
-                >Solscan</a
-              >.
+              Switch it off at any time: <strong>Settings → Privacy → Share usage data</strong> (Section 4).
             </p>
-
-            <h2>9. Your Rights and Choices</h2>
             <h3>Disconnecting Your Wallet</h3>
             <p>
-              You can disconnect your wallet at any time using the in-game
-              Disconnect option. This removes your wallet's public key and
-              session tokens from local storage. You should also revoke
-              OchiJump's authorization within your wallet application.
+              You can disconnect your wallet in the Game at any time; the device returns to its guest account. You should also revoke OchiJump's authorization in your wallet app.
+            </p>
+            <h3>Access and Deletion</h3>
+            <p>
+              You may ask for a copy of, or deletion of, the data associated with your account — your profile, cloud save, leaderboard entries, economy and purchase records, and gameplay and usage records — by contacting us (Section 15). We will need to verify that the account is yours (for a wallet account, by a signed message; for a guest account, from the device that holds it). We may keep records we are legally required to keep, or need to resolve a dispute or prevent fraud, for as long as that requires. Raw gameplay and usage records are deleted automatically after 180 days regardless.
             </p>
             <h3>Deleting Local Data</h3>
             <p>
-              To delete all locally stored data,
-              <strong>uninstall OchiJump</strong> from your device.
-            </p>
-            <h3>Deleting Cloud Data</h3>
-            <p>
-              You may request deletion of your cloud account data — your saved
-              progress and leaderboard entries — by contacting us at the address
-              in Section 13. We will verify your control of the wallet and
-              delete the associated records. (Raw telemetry is deleted
-              automatically within 30 days regardless.)
+              Uninstall OchiJump.
             </p>
             <h3>On-Chain Data</h3>
             <p>
-              On-chain records — including your <code>PlayerInventory</code> PDA
-              and all transaction history — <strong>cannot be deleted</strong>
-              by TwinPixelsLab or by you. To stop new on-chain data being
-              associated with your wallet, stop making purchases and disconnect
-              your wallet.
-            </p>
-
-            <h2>10. Android Permissions Explained</h2>
-            <h3>android.permission.INTERNET</h3>
-            <p>
-              Used to communicate with our cloud backend (Supabase) for sign-in,
-              progress sync, telemetry, and leaderboards, and with Solana RPC
-              endpoints (Helius and the public Solana network) to read
-              smart-contract state and submit signed purchase transactions. No
-              private keys are ever included in these requests.
-            </p>
-            <h3>android.permission.VIBRATE</h3>
-            <p>
-              Used to provide haptic feedback during gameplay. No data is
-              collected through this permission.
+              On-chain records cannot be deleted by TwinPixelsLab or by you (Section 8).
             </p>
 
             <h2>11. Third-Party Services</h2>
             <p>
-              OchiJump relies on the following third-party services. We do not
-              control their data practices — please review their privacy
-              policies.
+              We do not control their data practices — please review their privacy policies.
             </p>
             <h3>Supabase (supabase.com)</h3>
             <p>
-              Our cloud backend provider (database, authentication, and
-              serverless functions) for progress sync, telemetry, and
-              leaderboards. As part of operating the service, Supabase may
-              process technical request metadata such as IP addresses.
-              <a
-                href="https://supabase.com/privacy"
-                target="_blank"
-                rel="noopener"
-                >Privacy Policy →</a
-              >
+              Our cloud backend provider (database, authentication and serverless functions) for accounts, cloud save, economy and purchase records, gameplay and usage analytics, and leaderboards. It may process technical request metadata such as IP addresses.
             </p>
+            <ul>
+              <li>Privacy Policy: <a href="https://supabase.com/privacy" target="_blank" rel="noopener">https://supabase.com/privacy</a></li>
+            </ul>
             <h3>Helius (helius.dev)</h3>
             <p>
-              Our primary Solana RPC provider. When the Game communicates with
-              the blockchain, requests are routed through Helius, which may log
-              your IP address and request metadata.
-              <a
-                href="https://www.helius.dev/privacy-policy"
-                target="_blank"
-                rel="noopener"
-                >Privacy Policy →</a
-              >
+              Our primary Solana RPC provider. When the Game reads the blockchain or submits a signed transaction, requests may be routed through Helius, which may log your IP address and request metadata.
             </p>
+            <ul>
+              <li>Privacy Policy: <a href="https://www.helius.dev/privacy-policy" target="_blank" rel="noopener">https://www.helius.dev/privacy-policy</a></li>
+            </ul>
             <h3>Solana Foundation (Public RPC)</h3>
             <p>
               Used as a fallback RPC endpoint. Similar logging may apply.
-              <a
-                href="https://solana.com/privacy-policy"
-                target="_blank"
-                rel="noopener"
-                >Privacy Policy →</a
-              >
             </p>
-            <h3>Device Wallet App (e.g., Phantom on Solana Seeker)</h3>
-            <p>
-              Wallet authorization and transaction signing occur within your
-              device's native wallet application via the
-              <strong>Solana Mobile Wallet Adapter (MWA)</strong> protocol. We
-              never receive your private keys or seed phrase. Please refer to
-              your wallet app's privacy policy.
-            </p>
-
-            <h2>12. Children's Privacy</h2>
-            <p>
-              OchiJump is not directed to children under the age of 13. We do
-              not knowingly collect personal information from children under 13.
-              Users between 13 and 17 may use the Game only with parental or
-              guardian consent.
-            </p>
-            <p>
-              If you believe a minor has provided personal information in
-              connection with OchiJump, please contact us and we will take
-              appropriate steps.
-            </p>
-
-            <h2>13. Security</h2>
-            <p>We take the following steps to protect your information:</p>
             <ul>
-              <li>
-                <strong>HTTPS only.</strong> All network communications use
-                encrypted HTTPS connections
-                (<code>android:usesCleartextTraffic="false"</code> in our
-                Android manifest).
-              </li>
-              <li>
-                <strong>No direct database access.</strong> Clients never
-                connect to our database directly; all access flows through
-                controlled, server-side functions with strict row-level
-                security.
-              </li>
-              <li>
-                <strong>No private key handling.</strong> Transaction signing
-                occurs entirely within your wallet app. OchiJump never touches
-                your private key.
-              </li>
-              <li>
-                <strong>No cloud backup of local data.</strong> Android's
-                automatic backup is disabled for OchiJump
-                (<code>android:allowBackup="false"</code>).
-              </li>
+              <li>Privacy Policy: <a href="https://solana.com/privacy-policy" target="_blank" rel="noopener">https://solana.com/privacy-policy</a></li>
+            </ul>
+            <h3>Your Wallet App (e.g. the Solana Seeker's wallet, Phantom)</h3>
+            <p>
+              Wallet authorization and transaction signing happen inside your wallet app via the Solana Mobile Wallet Adapter (MWA) protocol. Please refer to its privacy policy.
+            </p>
+
+            <h2>12. Android Permissions Explained</h2>
+            <h3><code>android.permission.INTERNET</code></h3>
+            <p>
+              Used to communicate with our backend (accounts, cloud save, economy, purchases, gameplay and usage records, leaderboards) and with Solana RPC endpoints (balances, payment transactions). No private keys are ever included in these requests.
+            </p>
+            <h3><code>android.permission.VIBRATE</code></h3>
+            <p>
+              Used for haptic feedback during gameplay. No data is collected through this permission.
+            </p>
+
+            <h2>13. Children's Privacy</h2>
+            <p>
+              OchiJump is not directed to children under the age of 13. We do not knowingly collect personal information from children under 13. Users between 13 and 17 may use the Game only with parental or guardian consent.
+            </p>
+            <p>
+              If you believe a minor has provided personal information in connection with OchiJump, please contact us and we will take appropriate steps.
+            </p>
+
+            <h2>14. Security</h2>
+            <ul>
+              <li><strong>HTTPS only.</strong> All network communication is encrypted (<code>android:usesCleartextTraffic="false"</code>).</li>
+              <li><strong>No direct database access.</strong> The Game reaches our database only through controlled server-side functions with row-level security.</li>
+              <li><strong>Signed prices.</strong> Every hard-currency price is signed by our server and checked by the Game before your wallet opens.</li>
+              <li><strong>No private-key handling.</strong> Transaction signing happens entirely in your wallet app.</li>
+              <li><strong>No cloud backup of local data.</strong> Android's automatic backup is disabled (<code>android:allowBackup="false"</code>).</li>
             </ul>
             <p>
-              No method of transmission or storage is 100% secure, but we work
-              to protect your data using industry-standard practices.
+              No method of transmission or storage is 100% secure, but we work to protect your data using industry-standard practices.
             </p>
 
-            <h2>14. Changes to This Policy</h2>
+            <h2>15. Changes to This Policy &amp; Contact</h2>
             <p>
-              We may update this Privacy Policy from time to time. Changes will
-              be reflected by the updated "Last Updated" date at the top of this
-              document. We will notify you of material changes through an in-app
-              notice or via the app store update notes. Your continued use of
-              OchiJump after changes are posted constitutes your acceptance of
-              the revised Privacy Policy.
+              We may update this Privacy Policy from time to time. Changes are reflected by the "Last Updated" date above; we will tell you about material changes through an in-app notice or the app store's update notes. Your continued use of OchiJump after changes are posted constitutes acceptance of the revised Policy.
             </p>
-
-            <h2>15. Contact</h2>
             <p>
-              If you have any questions or concerns about this Privacy Policy, or
-              to request deletion of your cloud account data, please reach out:
+              For questions, or to request access to or deletion of your data:
             </p>
             <p>
               <strong>TwinPixelsLab</strong><br />
-              Email:
-              <a href="mailto:contact@twinpixelslab.com"
-                >contact@twinpixelslab.com</a
-              ><br />
-              Website:
-              <a href="https://twinpixelslab.com" target="_blank" rel="noopener"
-                >https://twinpixelslab.com</a
-              >
+              Email: <a href="mailto:contact@twinpixelslab.com">contact@twinpixelslab.com</a><br />
+              Website: <a href="https://twinpixelslab.com" target="_blank" rel="noopener">https://twinpixelslab.com</a>
             </p>
           </div>
         </div>
